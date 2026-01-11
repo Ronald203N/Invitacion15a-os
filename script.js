@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // CAMBIA ESTA FECHA POR LA FECHA REAL DE TU EVENTO
     // Formato: 'Mes Dia, Año Hora:Minutos:Segundos'
     // Ejemplo: 'November 15, 2025 16:00:00'
-    const eventDate = new Date('November 15, 2025 16:00:00').getTime();
+    const eventDate = new Date('may 16, 2026 16:00:00').getTime();
     // ============================================
     
     // Elementos de la galería
