@@ -24,8 +24,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // CAMBIA ESTA FECHA POR LA FECHA REAL DE TU EVENTO
     // Formato: 'Mes Dia, Año Hora:Minutos:Segundos'
     // Ejemplo: 'November 15, 2025 16:00:00'
-    const eventDate = new Date('april 16, 2026 16:00:00').getTime();
+    const eventDate = new Date('November 15, 2025 16:00:00').getTime();
     // ============================================
+    
+    // Elementos de la galería
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryFilters = document.querySelectorAll('.gallery-filter');
+    const galleryModal = document.getElementById('galleryModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const modalClose = document.querySelector('.modal-close');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    // Variables para la galería
+    let currentImageIndex = 0;
+    let filteredItems = Array.from(galleryItems);
     
     // Control de navegación móvil
     navToggle.addEventListener('click', function() {
@@ -50,25 +64,74 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Control de música
+    // Control de música - MEJORADO
     let isPlaying = false;
     
+    // Configurar música para autoplay con interacción del usuario
     musicBtn.addEventListener('click', function() {
-        if (isPlaying) {
-            backgroundMusic.pause();
-            musicBtn.innerHTML = '<i class="fas fa-play"></i><span>Reproducir música</span>';
-            musicBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-            musicBtn.style.color = 'var(--dark)';
+        // Si no hay interacción previa, intentamos reproducir
+        if (!isPlaying) {
+            // Intentar reproducir la música
+            const playPromise = backgroundMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    // Éxito: música reproduciéndose
+                    isPlaying = true;
+                    updateMusicButton();
+                }).catch(error => {
+                    // Fallo: mostrar mensaje de error
+                    console.log("Autoplay prevenido:", error);
+                    musicBtn.innerHTML = '<i class="fas fa-play"></i><span>Click para reproducir</span>';
+                    alert("Por favor, haz clic nuevamente para reproducir la música");
+                });
+            }
         } else {
-            backgroundMusic.play().catch(e => {
-                console.log("Autoplay prevenido, el usuario debe interactuar primero");
-                musicBtn.innerHTML = '<i class="fas fa-play"></i><span>Click para reproducir</span>';
-            });
-            musicBtn.innerHTML = '<i class="fas fa-pause"></i><span>Pausar música</span>';
-            musicBtn.style.backgroundColor = 'var(--primary)';
-            musicBtn.style.color = 'white';
+            // Si ya está reproduciendo, pausar
+            backgroundMusic.pause();
+            isPlaying = false;
+            updateMusicButton();
         }
-        isPlaying = !isPlaying;
+    });
+    
+    // Función para actualizar el botón de música
+    function updateMusicButton() {
+        const icon = musicBtn.querySelector('i');
+        const text = musicBtn.querySelector('span');
+        
+        if (isPlaying) {
+            icon.classList.remove('fa-play');
+            icon.classList.add('fa-pause');
+            if (text) text.textContent = 'Pausar música';
+            musicBtn.classList.add('playing');
+        } else {
+            icon.classList.remove('fa-pause');
+            icon.classList.add('fa-play');
+            if (text) text.textContent = 'Reproducir música';
+            musicBtn.classList.remove('playing');
+        }
+    }
+    
+    // Intentar cargar el estado de la música desde localStorage
+    const savedMusicState = localStorage.getItem('xvMusicPlaying');
+    if (savedMusicState === 'true') {
+        // Solo intentar reproducir automáticamente si el usuario ya interactuó antes
+        backgroundMusic.volume = 0.5; // Volumen moderado
+        isPlaying = true;
+        updateMusicButton();
+    }
+    
+    // Guardar estado de la música cuando cambie
+    backgroundMusic.addEventListener('play', function() {
+        isPlaying = true;
+        updateMusicButton();
+        localStorage.setItem('xvMusicPlaying', 'true');
+    });
+    
+    backgroundMusic.addEventListener('pause', function() {
+        isPlaying = false;
+        updateMusicButton();
+        localStorage.setItem('xvMusicPlaying', 'false');
     });
     
     // Contador regresivo
@@ -114,6 +177,125 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCountdown();
     setInterval(updateCountdown, 1000);
     
+    // Funcionalidad de filtrado de galería
+    galleryFilters.forEach(filter => {
+        filter.addEventListener('click', function() {
+            // Remover clase active de todos los filtros
+            galleryFilters.forEach(f => f.classList.remove('active'));
+            // Agregar clase active al filtro clickeado
+            this.classList.add('active');
+            
+            const filterValue = this.getAttribute('data-filter');
+            
+            // Filtrar elementos de galería
+            galleryItems.forEach(item => {
+                const category = item.getAttribute('data-category');
+                
+                if (filterValue === 'all' || category === filterValue) {
+                    item.style.display = 'block';
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'scale(1)';
+                    }, 10);
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'scale(0.8)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            // Actualizar lista de elementos filtrados
+            filteredItems = Array.from(galleryItems).filter(item => {
+                const category = item.getAttribute('data-category');
+                return filterValue === 'all' || category === filterValue;
+            });
+        });
+    });
+    
+    // Funcionalidad de galería modal
+    galleryItems.forEach((item, index) => {
+        item.addEventListener('click', function() {
+            const imgSrc = this.querySelector('.gallery-image').style.backgroundImage;
+            // Extraer URL de la imagen del estilo background-image
+            const urlMatch = imgSrc.match(/url\(["']?(.*?)["']?\)/);
+            if (urlMatch && urlMatch[1]) {
+                currentImageIndex = filteredItems.indexOf(this);
+                openModal(urlMatch[1], this.querySelector('.gallery-caption').textContent);
+            }
+        });
+    });
+    
+    // Función para abrir modal
+    function openModal(imgSrc, caption) {
+        modalImage.src = imgSrc;
+        modalCaption.textContent = caption;
+        galleryModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevenir scroll
+    }
+    
+    // Función para cerrar modal
+    function closeModal() {
+        galleryModal.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restaurar scroll
+    }
+    
+    // Función para mostrar imagen siguiente
+    function showNextImage() {
+        if (filteredItems.length === 0) return;
+        
+        currentImageIndex = (currentImageIndex + 1) % filteredItems.length;
+        const nextItem = filteredItems[currentImageIndex];
+        const imgSrc = nextItem.querySelector('.gallery-image').style.backgroundImage;
+        const urlMatch = imgSrc.match(/url\(["']?(.*?)["']?\)/);
+        
+        if (urlMatch && urlMatch[1]) {
+            modalImage.src = urlMatch[1];
+            modalCaption.textContent = nextItem.querySelector('.gallery-caption').textContent;
+        }
+    }
+    
+    // Función para mostrar imagen anterior
+    function showPrevImage() {
+        if (filteredItems.length === 0) return;
+        
+        currentImageIndex = (currentImageIndex - 1 + filteredItems.length) % filteredItems.length;
+        const prevItem = filteredItems[currentImageIndex];
+        const imgSrc = prevItem.querySelector('.gallery-image').style.backgroundImage;
+        const urlMatch = imgSrc.match(/url\(["']?(.*?)["']?\)/);
+        
+        if (urlMatch && urlMatch[1]) {
+            modalImage.src = urlMatch[1];
+            modalCaption.textContent = prevItem.querySelector('.gallery-caption').textContent;
+        }
+    }
+    
+    // Event listeners para controles del modal
+    modalClose.addEventListener('click', closeModal);
+    nextBtn.addEventListener('click', showNextImage);
+    prevBtn.addEventListener('click', showPrevImage);
+    
+    // Cerrar modal al hacer clic fuera de la imagen
+    galleryModal.addEventListener('click', function(e) {
+        if (e.target === galleryModal) {
+            closeModal();
+        }
+    });
+    
+    // Navegación con teclado
+    document.addEventListener('keydown', function(e) {
+        if (galleryModal.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeModal();
+            } else if (e.key === 'ArrowRight') {
+                showNextImage();
+            } else if (e.key === 'ArrowLeft') {
+                showPrevImage();
+            }
+        }
+    });
+    
     // Confirmación de asistencia
     confirmBtn.addEventListener('click', function() {
         // Validar formulario
@@ -153,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // ============================================
         // CAMBIA ESTE NÚMERO POR EL NÚMERO REAL
         // Formato: 521234567890 (sin +, espacios o guiones)
-        const whatsappNumber = '5215512345678';
+        const whatsappNumber = '55996252';
         // ============================================
         
         const whatsappMessage = `¡Hola! Confirmo mi asistencia a los XV años de Valeria.\n\n` +
@@ -231,13 +413,20 @@ document.addEventListener('DOMContentLoaded', function() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animated');
                 
-                // Efecto especial para cards
+                // Efecto especial para diferentes elementos
                 if (entry.target.classList.contains('detail-card') || 
                     entry.target.classList.contains('location-card') ||
                     entry.target.classList.contains('dress-option') ||
                     entry.target.classList.contains('padrino-card')) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+                
+                if (entry.target.classList.contains('timeline-item')) {
+                    entry.target.style.animation = 'slideIn 0.6s ease forwards';
+                }
+                
+                if (entry.target.classList.contains('gallery-item')) {
+                    entry.target.style.animation = 'fadeIn 0.8s ease forwards';
                 }
             }
         });
@@ -246,8 +435,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Observar elementos para animaciones
     document.querySelectorAll('.detail-card, .location-card, .dress-option, .gallery-item, .padrino-card, .timeline-item').forEach(el => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         observer.observe(el);
     });
     
@@ -290,48 +477,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
     
-    // Efecto de partículas decorativas
-    function createParticles() {
-        const particlesContainer = document.createElement('div');
-        particlesContainer.className = 'particles-container';
-        particlesContainer.style.position = 'fixed';
-        particlesContainer.style.top = '0';
-        particlesContainer.style.left = '0';
-        particlesContainer.style.width = '100%';
-        particlesContainer.style.height = '100%';
-        particlesContainer.style.pointerEvents = 'none';
-        particlesContainer.style.zIndex = '0';
-        document.body.appendChild(particlesContainer);
-        
-        // Crear partículas solo para el header
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.style.position = 'absolute';
-            particle.style.width = Math.random() * 5 + 2 + 'px';
-            particle.style.height = particle.style.width;
-            particle.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-            particle.style.borderRadius = '50%';
-            particle.style.top = Math.random() * 100 + 'vh';
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.opacity = Math.random() * 0.5 + 0.3;
-            
-            // Animación
-            particle.animate([
-                { transform: 'translateY(0px)', opacity: particle.style.opacity },
-                { transform: `translateY(${Math.random() * 100 + 50}px)`, opacity: 0 }
-            ], {
-                duration: Math.random() * 3000 + 2000,
-                iterations: Infinity,
-                delay: Math.random() * 2000
-            });
-            
-            particlesContainer.appendChild(particle);
-        }
-    }
-    
-    // Llamar a la función de partículas
-    createParticles();
-    
     // Efecto de scroll suave para enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -348,4 +493,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Inicializar elementos filtrados
+    filteredItems = Array.from(galleryItems);
+    
+    // Asegurarse de que el botón de música sea visible
+    setTimeout(() => {
+        musicBtn.style.visibility = 'visible';
+        musicBtn.style.opacity = '1';
+    }, 100);
 });
