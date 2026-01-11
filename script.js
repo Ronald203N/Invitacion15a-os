@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Elementos del DOM
     const musicBtn = document.getElementById('musicBtn');
+    const spotifyPlayBtn = document.getElementById('spotifyPlayBtn');
     const backgroundMusic = document.getElementById('backgroundMusic');
     const daysElement = document.getElementById('days');
     const hoursElement = document.getElementById('hours');
@@ -13,18 +14,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const ticketName = document.getElementById('ticketName');
     const ticketGuests = document.getElementById('ticketGuests');
     const ticketCode = document.getElementById('ticketCode');
+    const ticketBarcodeNumber = document.getElementById('ticketBarcodeNumber');
     const saveTicketBtn = document.getElementById('saveTicketBtn');
     const newConfirmationBtn = document.getElementById('newConfirmationBtn');
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.querySelector('.nav-menu');
+    const progressFill = document.querySelector('.progress-fill');
     
     // ============================================
     // CONFIGURACIÓN IMPORTANTE: FECHA DEL EVENTO
     // ============================================
     // CAMBIA ESTA FECHA POR LA FECHA REAL DE TU EVENTO
     // Formato: 'Mes Dia, Año Hora:Minutos:Segundos'
-    // Ejemplo: 'November 15, 2025 16:00:00'
-    const eventDate = new Date('may 16, 2026 16:00:00').getTime();
+    // Ejemplo: 'December 15, 2024 16:00:00'
+    const eventDate = new Date('December 15, 2024 16:00:00').getTime();
     // ============================================
     
     // Elementos de la galería
@@ -40,6 +43,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Variables para la galería
     let currentImageIndex = 0;
     let filteredItems = Array.from(galleryItems);
+    
+    // Variables para el reproductor
+    let isPlaying = false;
+    let progressInterval;
+    let currentTime = 0;
+    const totalTime = 225; // 3:45 en segundos
     
     // Control de navegación móvil
     navToggle.addEventListener('click', function() {
@@ -64,12 +73,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Control de música - MEJORADO
-    let isPlaying = false;
-    
-    // Configurar música para autoplay con interacción del usuario
-    musicBtn.addEventListener('click', function() {
-        // Si no hay interacción previa, intentamos reproducir
+    // Control de música - DISEÑO SPOTIFY
+    function toggleMusic() {
         if (!isPlaying) {
             // Intentar reproducir la música
             const playPromise = backgroundMusic.play();
@@ -79,11 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Éxito: música reproduciéndose
                     isPlaying = true;
                     updateMusicButton();
+                    startProgressAnimation();
                 }).catch(error => {
                     // Fallo: mostrar mensaje de error
                     console.log("Autoplay prevenido:", error);
-                    musicBtn.innerHTML = '<i class="fas fa-play"></i><span>Click para reproducir</span>';
-                    alert("Por favor, haz clic nuevamente para reproducir la música");
+                    showNotification("Haz clic en el botón de play para reproducir la música");
                 });
             }
         } else {
@@ -91,34 +96,85 @@ document.addEventListener('DOMContentLoaded', function() {
             backgroundMusic.pause();
             isPlaying = false;
             updateMusicButton();
+            stopProgressAnimation();
         }
-    });
+    }
+    
+    // Botón principal de música
+    musicBtn.addEventListener('click', toggleMusic);
+    
+    // Botón de play en la imagen de Spotify
+    spotifyPlayBtn.addEventListener('click', toggleMusic);
     
     // Función para actualizar el botón de música
     function updateMusicButton() {
         const icon = musicBtn.querySelector('i');
-        const text = musicBtn.querySelector('span');
+        const spotifyIcon = spotifyPlayBtn.querySelector('i');
         
         if (isPlaying) {
             icon.classList.remove('fa-play');
             icon.classList.add('fa-pause');
-            if (text) text.textContent = 'Pausar música';
+            spotifyIcon.classList.remove('fa-play');
+            spotifyIcon.classList.add('fa-pause');
             musicBtn.classList.add('playing');
         } else {
             icon.classList.remove('fa-pause');
             icon.classList.add('fa-play');
-            if (text) text.textContent = 'Reproducir música';
+            spotifyIcon.classList.remove('fa-pause');
+            spotifyIcon.classList.add('fa-play');
             musicBtn.classList.remove('playing');
         }
     }
+    
+    // Función para animar la barra de progreso
+    function startProgressAnimation() {
+        stopProgressAnimation();
+        currentTime = 0;
+        
+        progressInterval = setInterval(() => {
+            if (currentTime >= totalTime) {
+                currentTime = 0;
+                progressFill.style.width = '0%';
+            } else {
+                currentTime += 1;
+                const progressPercent = (currentTime / totalTime) * 100;
+                progressFill.style.width = `${progressPercent}%`;
+            }
+        }, 1000);
+    }
+    
+    // Función para detener la animación de progreso
+    function stopProgressAnimation() {
+        if (progressInterval) {
+            clearInterval(progressInterval);
+            progressInterval = null;
+        }
+    }
+    
+    // Actualizar el tiempo actual de la canción
+    backgroundMusic.addEventListener('timeupdate', function() {
+        currentTime = backgroundMusic.currentTime;
+        const progressPercent = (currentTime / totalTime) * 100;
+        progressFill.style.width = `${progressPercent}%`;
+    });
+    
+    // Cuando la canción termine, reiniciar
+    backgroundMusic.addEventListener('ended', function() {
+        isPlaying = false;
+        updateMusicButton();
+        stopProgressAnimation();
+        progressFill.style.width = '0%';
+        currentTime = 0;
+    });
     
     // Intentar cargar el estado de la música desde localStorage
     const savedMusicState = localStorage.getItem('xvMusicPlaying');
     if (savedMusicState === 'true') {
         // Solo intentar reproducir automáticamente si el usuario ya interactuó antes
-        backgroundMusic.volume = 0.5; // Volumen moderado
+        backgroundMusic.volume = 0.7; // Volumen moderado
         isPlaying = true;
         updateMusicButton();
+        startProgressAnimation();
     }
     
     // Guardar estado de la música cuando cambie
@@ -300,12 +356,35 @@ document.addEventListener('DOMContentLoaded', function() {
     confirmBtn.addEventListener('click', function() {
         // Validar formulario
         const nameInput = document.getElementById('name');
+        const phoneInput = document.getElementById('phone');
         const guestsSelect = document.getElementById('guests');
         const asistenciaCheckbox = document.getElementById('asistencia');
         
         if (!nameInput.value.trim()) {
             alert('Por favor ingresa tu nombre completo');
             nameInput.focus();
+            return;
+        }
+        
+        if (!phoneInput.value.trim()) {
+            alert('Por favor ingresa tu número de celular');
+            phoneInput.focus();
+            return;
+        }
+        
+        // Validar formato de teléfono (mínimo 8 dígitos para Guatemala)
+        const phoneRegex = /^[0-9\s\+\-\(\)]{8,}$/;
+        const cleanedPhone = phoneInput.value.replace(/\D/g, '');
+        
+        if (cleanedPhone.length < 8) {
+            alert('Por favor ingresa un número de celular válido (mínimo 8 dígitos)');
+            phoneInput.focus();
+            return;
+        }
+        
+        if (!guestsSelect.value) {
+            alert('Por favor selecciona el número de acompañantes');
+            guestsSelect.focus();
             return;
         }
         
@@ -316,9 +395,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Obtener datos del formulario
         const name = nameInput.value.trim();
+        const phone = cleanedPhone;
         const guests = guestsSelect.value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
         const message = document.getElementById('message').value;
         
         // Generar código único para el pase
@@ -328,29 +406,61 @@ document.addEventListener('DOMContentLoaded', function() {
         ticketName.textContent = name;
         ticketGuests.textContent = guests;
         ticketCode.textContent = randomCode;
+        ticketBarcodeNumber.textContent = randomCode;
         
-        // Preparar mensaje para WhatsApp
+        // Preparar mensaje para WhatsApp con el pase incluido
         // ============================================
-        // CONFIGURACIÓN: NÚMERO DE WHATSAPP
+        // CONFIGURACIÓN: NÚMERO DE WHATSAPP DE RAQUELITA
         // ============================================
-        // CAMBIA ESTE NÚMERO POR EL NÚMERO REAL
-        // Formato: 521234567890 (sin +, espacios o guiones)
-        const whatsappNumber = '55996252';
+        // CAMBIA ESTE NÚMERO POR EL NÚMERO REAL DE RAQUELITA
+        const whatsappNumber = '55996252'; // Número de Raquelita (Guatemala)
         // ============================================
         
-        const whatsappMessage = `¡Hola! Confirmo mi asistencia a los XV años de Valeria.\n\n` +
-                                `Nombre: ${name}\n` +
-                                `Acompañantes: ${guests}\n` +
-                                (phone ? `Teléfono: ${phone}\n` : '') +
-                                (email ? `Email: ${email}\n` : '') +
-                                (message ? `Mensaje: ${message}\n` : '') +
-                                `\nCódigo de confirmación: XV-2025-${randomCode}`;
+        const paseWhatsApp = `
+🎟️ *PASE DE ACCESO - XV AÑOS DE RAQUELITA* 🎟️
+📍 *Antigua Guatemala, Guatemala*
+
+👤 *Invitado:* ${name}
+👥 *Acompañantes:* ${guests}
+📅 *Fecha:* 15 de Diciembre, 2024
+⏰ *Hora de recepción:* 17:30 hrs
+📍 *Lugar:* Salón "Jardines de la Antigua"
+🔑 *Código de acceso:* XV-2024-${randomCode}
+
+*Instrucciones:*
+1. Presenta este pase en la entrada del salón
+2. Llega puntual para disfrutar todas las actividades
+3. Comparte tus fotos con #XVRaquelita2024
+
+¡Te esperamos con mucha alegría! 🎉
+        `;
         
-        const encodedMessage = encodeURIComponent(whatsappMessage);
-        const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        const confirmacionWhatsApp = `¡Hola Raquelita! Confirmo mi asistencia a tus XV años.
+
+👤 Nombre: ${name}
+📱 Teléfono: ${phoneInput.value}
+👥 Acompañantes: ${guests}
+💌 Mensaje: ${message || 'Sin mensaje adicional'}
+
+Código de confirmación: XV-2024-${randomCode}`;
         
-        // Abrir WhatsApp en una nueva pestaña
-        window.open(whatsappURL, '_blank');
+        // Codificar mensajes para URL
+        const encodedPase = encodeURIComponent(paseWhatsApp);
+        const encodedConfirmacion = encodeURIComponent(confirmacionWhatsApp);
+        
+        // Enviar confirmación a Raquelita
+        const whatsappURLConfirmacion = `https://wa.me/${whatsappNumber}?text=${encodedConfirmacion}`;
+        
+        // Enviar pase al invitado (a su propio número)
+        const whatsappURLPase = `https://wa.me/502${phone}?text=${encodedPase}`;
+        
+        // Abrir WhatsApp para confirmación
+        window.open(whatsappURLConfirmacion, '_blank');
+        
+        // Enviar pase después de un breve retraso
+        setTimeout(() => {
+            window.open(whatsappURLPase, '_blank');
+        }, 1000);
         
         // Mostrar sección del pase
         paseSection.style.display = 'block';
@@ -363,33 +473,65 @@ document.addEventListener('DOMContentLoaded', function() {
         // Guardar datos en localStorage
         const confirmationData = {
             name: name,
-            guests: guests,
-            email: email,
             phone: phone,
+            guests: guests,
             code: randomCode,
             date: new Date().toISOString()
         };
         
-        localStorage.setItem('xvValeriaConfirmation', JSON.stringify(confirmationData));
+        localStorage.setItem('xvRaquelitaConfirmation', JSON.stringify(confirmationData));
         
         // Mostrar notificación de éxito
-        showNotification('¡Confirmación exitosa! Revisa tu pase de acceso.');
+        showNotification('¡Confirmación exitosa! Revisa tu WhatsApp para recibir tu pase.');
     });
     
-    // Guardar pase como imagen
+    // Guardar pase como imagen - FUNCIONALIDAD COMPLETA
     saveTicketBtn.addEventListener('click', function() {
-        // En un entorno real, aquí se usaría html2canvas para generar una imagen
-        // Por ahora, damos instrucciones para captura de pantalla
-        showNotification('Toma una captura de pantalla de tu pase. En dispositivos móviles: presiona los botones de volumen y encendido al mismo tiempo.');
+        const ticketElement = document.getElementById('ticketToSave');
         
-        // Simular descarga
-        saveTicketBtn.innerHTML = '<i class="fas fa-check"></i> Instrucciones mostradas';
+        // Cambiar texto del botón para indicar que está procesando
+        const originalText = saveTicketBtn.innerHTML;
+        saveTicketBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando imagen...';
         saveTicketBtn.disabled = true;
         
-        setTimeout(() => {
-            saveTicketBtn.innerHTML = '<i class="fas fa-download"></i> Guardar pase';
+        // Usar html2canvas para generar la imagen
+        html2canvas(ticketElement, {
+            scale: 2, // Mayor resolución
+            useCORS: true, // Para imágenes externas
+            backgroundColor: '#ffffff'
+        }).then(canvas => {
+            // Convertir canvas a imagen
+            const imgData = canvas.toDataURL('image/png');
+            
+            // Crear enlace para descarga
+            const link = document.createElement('a');
+            link.href = imgData;
+            link.download = `Pase-XV-Raquelita-${ticketCode.textContent}.png`;
+            
+            // Simular clic para descargar
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Restaurar botón
+            saveTicketBtn.innerHTML = originalText;
             saveTicketBtn.disabled = false;
-        }, 3000);
+            
+            // Mostrar notificación
+            showNotification('¡Pase descargado exitosamente!');
+        }).catch(error => {
+            console.error('Error al generar la imagen:', error);
+            
+            // Si html2canvas falla, dar instrucciones para captura de pantalla
+            saveTicketBtn.innerHTML = '<i class="fas fa-camera"></i> Usa captura de pantalla';
+            showNotification('Para guardar el pase, toma una captura de pantalla. En móviles: presiona volumen + encendido.');
+            
+            // Restaurar después de 3 segundos
+            setTimeout(() => {
+                saveTicketBtn.innerHTML = originalText;
+                saveTicketBtn.disabled = false;
+            }, 3000);
+        });
     });
     
     // Nueva confirmación
@@ -439,12 +581,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Cargar confirmación previa si existe
-    const savedConfirmation = localStorage.getItem('xvValeriaConfirmation');
+    const savedConfirmation = localStorage.getItem('xvRaquelitaConfirmation');
     if (savedConfirmation) {
         const data = JSON.parse(savedConfirmation);
         ticketName.textContent = data.name;
         ticketGuests.textContent = data.guests;
         ticketCode.textContent = data.code;
+        ticketBarcodeNumber.textContent = data.code;
     }
     
     // Función para mostrar notificaciones
@@ -457,13 +600,14 @@ document.addEventListener('DOMContentLoaded', function() {
             position: fixed;
             top: 100px;
             right: 20px;
-            background-color: var(--primary);
+            background-color: var(--spotify-green);
             color: white;
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: var(--shadow-strong);
             z-index: 9999;
             animation: slideIn 0.3s ease;
+            max-width: 300px;
         `;
         
         document.body.appendChild(notification);
@@ -472,7 +616,9 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             notification.style.animation = 'slideOut 0.3s ease';
             setTimeout(() => {
-                document.body.removeChild(notification);
+                if (notification.parentNode) {
+                    document.body.removeChild(notification);
+                }
             }, 300);
         }, 3000);
     }
@@ -497,9 +643,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar elementos filtrados
     filteredItems = Array.from(galleryItems);
     
-    // Asegurarse de que el botón de música sea visible
+    // Asegurarse de que el reproductor sea visible
     setTimeout(() => {
-        musicBtn.style.visibility = 'visible';
-        musicBtn.style.opacity = '1';
-    }, 100);
+        const spotifyContainer = document.querySelector('.spotify-container');
+        if (spotifyContainer) {
+            spotifyContainer.style.opacity = '1';
+            spotifyContainer.style.transform = 'translateY(0)';
+        }
+        
+        // Iniciar animación de la barra de progreso si la música está reproduciéndose
+        if (isPlaying) {
+            startProgressAnimation();
+        }
+    }, 300);
 });

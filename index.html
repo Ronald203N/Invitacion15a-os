@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.css">
 </head>
 <body>
     <!-- Navegación fija -->
@@ -30,22 +31,62 @@
         </div>
     </nav>
 
-    <!-- Botón de música -->
-    <div class="music-btn-container">
-        <button id="musicBtn" class="music-btn">
-            <i class="fas fa-play"></i>
-            <span>Reproducir música</span>
-        </button>
+    <!-- Header con Hero Section mejorado con diseño Spotify -->
+    <header id="inicio">
+        <div class="hero-image"></div>
+        <div class="hero-overlay"></div>
+        
+        <!-- Contenedor estilo Spotify con imagen de la quinceañera y reproductor -->
+        <div class="spotify-container">
+            <div class="spotify-player">
+                <div class="spotify-header">
+                    <div class="spotify-cover">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Raquelita - Quinceañera">
+                        <div class="spotify-play-btn" id="spotifyPlayBtn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="spotify-info">
+                        <h3 class="spotify-title">Mi Canción Especial</h3>
+                        <p class="spotify-artist">Raquelita - XV Años</p>
+                        <div class="spotify-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <div class="progress-time">
+                                <span>0:00</span>
+                                <span>3:45</span>
+                            </div>
+                        </div>
+                        <div class="spotify-controls">
+                            <button class="control-btn"><i class="fas fa-step-backward"></i></button>
+                            <button class="control-btn play-btn" id="musicBtn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <button class="control-btn"><i class="fas fa-step-forward"></i></button>
+                            <button class="control-btn volume-btn">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="spotify-now-playing">
+                    <p><i class="fas fa-headphones"></i> Reproduciendo: <span>Mi Canción Especial - XV Raquelita</span></p>
+                </div>
+            </div>
+            
+            <div class="welcome-message">
+                <h2>¡Bienvenidos a mis XV años!</h2>
+                <p>Escucha mi canción especial mientras exploras mi invitación</p>
+            </div>
+        </div>
+        
+        <!-- Elemento de audio -->
         <audio id="backgroundMusic" loop>
             <source src="Chayanne - Tiempo De Vals (Vídeo Oficial).mp3" type="audio/mpeg">
             Tu navegador no soporta el elemento de audio.
         </audio>
-    </div>
-
-    <!-- Header con Hero Section -->
-    <header id="inicio">
-        <div class="hero-image"></div>
-        <div class="hero-overlay"></div>
+        
         <div class="hero-content">
             <h1 class="hero-title">Mis XV Años</h1>
             <div class="name-overlay">
@@ -74,7 +115,7 @@
             </div>
             
             <div class="countdown-note">
-                <p><i class="fas fa-calendar-alt"></i> Faltan para el gran día: <strong>16 de Mayo, 2026</strong></p>
+                <p><i class="fas fa-calendar-alt"></i> Faltan para el gran día: <strong>15 de Diciembre, 2024</strong></p>
             </div>
             
             <a href="#invitacion" class="btn hero-btn">Ver invitación completa</a>
@@ -126,7 +167,7 @@
                         <i class="far fa-calendar-alt"></i>
                     </div>
                     <h3>Fecha</h3>
-                    <p class="detail-date">Sábado, 16 de Mayo 2026</p>
+                    <p class="detail-date">Sábado, 15 de Diciembre 2024</p>
                     <p class="detail-note">Reserva la fecha en tu agenda</p>
                 </div>
                 
@@ -166,7 +207,7 @@
                         <div class="timeline-time">15:30</div>
                         <div class="timeline-content">
                             <h3>Llegada a la iglesia</h3>
-                            <p>Recepción de invitados en la Parroquia de Santa María</p>
+                            <p>Recepción de invitados en la Parroquia Nuestra Señora del Rosario</p>
                         </div>
                     </div>
                     
@@ -198,7 +239,7 @@
                         <div class="timeline-time">19:00</div>
                         <div class="timeline-content">
                             <h3>Cena</h3>
-                            <p>Banquete especial con menú para todos los gustos</p>
+                            <p>Banquete especial con platillos típicos guatemaltecos</p>
                         </div>
                     </div>
                     
@@ -214,7 +255,7 @@
                         <div class="timeline-time">21:00</div>
                         <div class="timeline-content">
                             <h3>¡A bailar!</h3>
-                            <p>Fiesta con música, sorpresas y mucha diversión</p>
+                            <p>Fiesta con marimba, música latina y mucha diversión</p>
                         </div>
                     </div>
                     
@@ -242,10 +283,10 @@
                         <i class="fas fa-church"></i>
                     </div>
                     <h3>Misa de Acción de Gracias</h3>
-                    <p><strong>Parroquia de Santa María</strong></p>
-                    <p>Av. Principal #123, Colonia Centro</p>
-                    <p>Ciudad de Guatemala</p>
-                    <a href="https://www.google.com/maps/place/Catedral+Metropolitana+de+la+Ciudad+de+M%C3%A9xico/@19.4344475,-99.1343385,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f92b75aa014d:0x8d958c1855f0d35a!8m2!3d19.4344475!4d-99.1321498!16zL20vMDM4cW5j?entry=ttu" target="_blank" class="btn location-btn">
+                    <p><strong>Parroquia Nuestra Señora del Rosario</strong></p>
+                    <p>6a Avenida 7-10, Zona 1</p>
+                    <p>Antigua Guatemala, Guatemala</p>
+                    <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Rosario/@14.5589054,-90.733935,17z/data=!3m1!4b1!4m6!3m5!1s0x85890f8dce2b8f7b:0x44b4f8b5d3c5a5b1!8m2!3d14.5589054!4d-90.7317463!16s%2Fg%2F11b8z5q5q5?entry=ttu" target="_blank" class="btn location-btn">
                         <i class="fas fa-map-marker-alt"></i> Ver en mapa
                     </a>
                 </div>
@@ -255,10 +296,10 @@
                         <i class="fas fa-glass-cheers"></i>
                     </div>
                     <h3>Salón de Fiesta</h3>
-                    <p><strong>Salón "Jardines del Paraíso"</strong></p>
-                    <p>Calle de las Flores #456, Jardines del Valle</p>
-                    <p>Ciudad de Guatemala</p>
-                    <a href="https://www.google.com/maps/place/Salon+Los+Jardines/@19.3781358,-99.1785753,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1ff83c3a2c173:0x6f5b56e3664272a0!8m2!3d19.3781358!4d-99.1760004!16s%2Fg%2F11bbr7sttz?entry=ttu" target="_blank" class="btn location-btn">
+                    <p><strong>Salón "Jardines de la Antigua"</strong></p>
+                    <p>Calle del Arco 4-20, Zona 3</p>
+                    <p>Antigua Guatemala, Guatemala</p>
+                    <a href="https://www.google.com/maps/place/Antigua+Guatemala/@14.5589054,-90.733935,14z/data=!4m6!3m5!1s0x85890f8dce2b8f7b:0x44b4f8b5d3c5a5b1!8m2!3d14.5589054!4d-90.7317463!16zL20vMDJ3NzE?entry=ttu" target="_blank" class="btn location-btn">
                         <i class="fas fa-map-marker-alt"></i> Ver en mapa
                     </a>
                 </div>
@@ -266,7 +307,7 @@
             
             <div class="transport-note">
                 <p><i class="fas fa-car"></i> <strong>Estacionamiento disponible</strong> en ambos lugares</p>
-             
+                <p><i class="fas fa-taxi"></i> <strong>Servicio de taxis</strong> recomendado para regreso</p>
             </div>
         </div>
     </section>
@@ -327,7 +368,7 @@
                         <i class="fas fa-ring"></i>
                     </div>
                     <h3>Padrinos de Anillos</h3>
-                    <p class="padrino-names">Tíos: María y Roberto Sánchez</p>
+                    <p class="padrino-names">Tíos: María y Roberto García</p>
                 </div>
                 
                 <div class="padrino-card">
@@ -335,7 +376,7 @@
                         <i class="fas fa-bible"></i>
                     </div>
                     <h3>Padrinos de Biblia</h3>
-                    <p class="padrino-names">Abuelos: Carmen y Jorge González</p>
+                    <p class="padrino-names">Abuelos: Carmen y Jorge Hernández</p>
                 </div>
                 
                 <div class="padrino-card">
@@ -359,7 +400,7 @@
                         <i class="fas fa-music"></i>
                     </div>
                     <h3>Padrinos de Música</h3>
-                    <p class="padrino-names">Primos: Alejandro y Javier Fernández</p>
+                    <p class="padrino-names">Primos: Alejandro y Javier Martínez</p>
                 </div>
                 
                 <div class="padrino-card">
@@ -367,17 +408,17 @@
                         <i class="fas fa-camera"></i>
                     </div>
                     <h3>Padrinos de Recuerdos</h3>
-                    <p class="padrino-names">Tíos: Patricia y Luis Martínez</p>
+                    <p class="padrino-names">Tíos: Patricia y Luis Ramírez</p>
                 </div>
             </div>
             
             <div class="agradecimiento">
-                <p><i class="fas fa-heart"></i> Un agradecimiento especial a mis padres, <strong>Raquel y Jonhatan</strong>, por hacer posible este sueño y por su amor incondicional.</p>
+                <p><i class="fas fa-heart"></i> Un agradecimiento especial a mis padres, <strong>Lucía y Carlos</strong>, por hacer posible este sueño y por su amor incondicional.</p>
             </div>
         </div>
     </section>
 
-    <!-- Sección de galería mejorada -->
+    <!-- Sección de galería -->
     <section id="galeria" class="section">
         <div class="container">
             <h2>Momentos Especiales</h2>
@@ -387,7 +428,7 @@
                 <button class="gallery-filter active" data-filter="all">Todas</button>
                 <button class="gallery-filter" data-filter="familiar">Familiar</button>
                 <button class="gallery-filter" data-filter="amigos">Amigos</button>
-                <button class="gallery-filter" data-filter="viajes">Viajes</button>
+                <button class="gallery-filter" data-filter="guatemala">Guatemala</button>
             </div>
             
             <div class="gallery-grid">
@@ -412,19 +453,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-caption">Con mi familia</div>
+                    <div class="gallery-caption">Con mi familia en Antigua</div>
                 </div>
                 
                 <!-- Foto 3 -->
-                <div class="gallery-item" data-category="viajes">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1052&q=80');">
+                <div class="gallery-item" data-category="guatemala">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
                         <div class="gallery-overlay">
                             <div class="gallery-icons">
                                 <i class="fas fa-expand"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-caption">En la playa</div>
+                    <div class="gallery-caption">Visitando el Lago de Atitlán</div>
                 </div>
                 
                 <!-- Foto 4 -->
@@ -464,15 +505,15 @@
                 </div>
                 
                 <!-- Foto 7 -->
-                <div class="gallery-item" data-category="viajes">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');">
+                <div class="gallery-item" data-category="guatemala">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80');">
                         <div class="gallery-overlay">
                             <div class="gallery-icons">
                                 <i class="fas fa-expand"></i>
                             </div>
                         </div>
                     </div>
-                    <div class="gallery-caption">Día de campo</div>
+                    <div class="gallery-caption">En Tikal, Petén</div>
                 </div>
                 
                 <!-- Foto 8 -->
@@ -507,7 +548,7 @@
     <section id="confirmacion" class="section section-light">
         <div class="container">
             <h2>Confirmación de Asistencia</h2>
-            <p class="section-subtitle">Por favor, confirma tu asistencia antes del 15 de abril de 2026</p>
+            <p class="section-subtitle">Por favor, confirma tu asistencia antes del 1 de Diciembre de 2024</p>
             
             <div class="confirmation-form">
                 <form id="attendanceForm">
@@ -518,20 +559,17 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="email">Correo electrónico</label>
-                            <input type="email" id="email" name="email" placeholder="tu@email.com">
+                            <label for="phone">Teléfono celular *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="502 1234 5678">
+                            <small class="form-hint">Recibirás tu pase digital en este número</small>
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="phone">Teléfono (opcional)</label>
-                            <input type="tel" id="phone" name="phone" placeholder="55 1234 5678">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="guests">Número de acompañantes</label>
-                            <select id="guests" name="guests">
+                            <label for="guests">Número de acompañantes *</label>
+                            <select id="guests" name="guests" required>
+                                <option value="" disabled selected>Selecciona una opción</option>
                                 <option value="0">0 - Solo yo</option>
                                 <option value="1">1 acompañante</option>
                                 <option value="2">2 acompañantes</option>
@@ -544,12 +582,12 @@
                     
                     <div class="form-group">
                         <label for="message">Mensaje especial para la quinceañera (opcional)</label>
-                        <textarea id="message" name="message" placeholder="Escribe un mensaje para Valeria..."></textarea>
+                        <textarea id="message" name="message" placeholder="Escribe un mensaje para Raquelita..."></textarea>
                     </div>
                     
                     <div class="form-group checkbox-group">
                         <input type="checkbox" id="asistencia" name="asistencia" required>
-                        <label for="asistencia">Confirmo que asistiré a la celebración de XV años de Raquel *</label>
+                        <label for="asistencia">Confirmo que asistiré a la celebración de XV años de Raquelita *</label>
                     </div>
                     
                     <button type="button" id="confirmBtn" class="btn confirm-btn">
@@ -558,7 +596,7 @@
                 </form>
                 
                 <div class="form-note">
-                    <p><i class="fas fa-info-circle"></i> Al confirmar, se abrirá WhatsApp para enviar tu confirmación automáticamente al número de la quinceañera. Luego recibirás tu pase de acceso digital para el evento.</p>
+                    <p><i class="fas fa-info-circle"></i> Al confirmar, se abrirá WhatsApp para enviar tu confirmación y recibirás tu pase de acceso digital en tu celular.</p>
                 </div>
             </div>
         </div>
@@ -571,10 +609,11 @@
             <p class="section-subtitle">Tu pase de acceso ha sido generado</p>
             
             <div class="ticket-container">
-                <div class="ticket">
+                <div class="ticket" id="ticketToSave">
                     <div class="ticket-header">
                         <h3>Pase de Acceso Exclusivo</h3>
-                        <p>XV Años de Raqueluta • 16 de Mayo, 2026</p>
+                        <p>XV Años de Raquelita • 15 de Diciembre, 2024</p>
+                        <p class="ticket-country"><i class="fas fa-map-marker-alt"></i> Antigua Guatemala, Guatemala</p>
                     </div>
                     
                     <div class="ticket-body">
@@ -596,7 +635,7 @@
                             
                             <div class="ticket-field">
                                 <span class="ticket-label">Fecha:</span>
-                                <span class="ticket-value">16 de Mayo, 2026</span>
+                                <span class="ticket-value">15 de Diciembre, 2024</span>
                             </div>
                             
                             <div class="ticket-field">
@@ -606,13 +645,18 @@
                             
                             <div class="ticket-field">
                                 <span class="ticket-label">Lugar:</span>
-                                <span class="ticket-value">Salón "Jardines del Paraíso"</span>
+                                <span class="ticket-value">Salón "Jardines de la Antigua"</span>
+                            </div>
+                            
+                            <div class="ticket-field">
+                                <span class="ticket-label">Código de acceso:</span>
+                                <span class="ticket-value">XV-2024-<span id="ticketCode">0000</span></span>
                             </div>
                         </div>
                         
                         <div class="ticket-barcode">
-                            <div class="barcode"></div>
-                            <p class="barcode-number">XV-2026-<span id="ticketCode">0000</span></p>
+                            <div class="barcode" id="ticketBarcode"></div>
+                            <p class="barcode-number">XV-2024-<span id="ticketBarcodeNumber">0000</span></p>
                         </div>
                     </div>
                     
@@ -632,10 +676,11 @@
                 <div class="ticket-instructions">
                     <h4><i class="fas fa-lightbulb"></i> Instrucciones:</h4>
                     <ol>
-                        <li>Toma una captura de pantalla de este pase o guárdalo como imagen</li>
+                        <li>Guarda este pase en tu dispositivo usando el botón "Guardar pase"</li>
+                        <li>También recibirás una copia en tu WhatsApp</li>
                         <li>Muéstralo en la entrada del salón el día del evento</li>
                         <li>Llega puntual para disfrutar de todas las actividades</li>
-                        <li>Comparte tus fotos con el hashtag <strong>#XVValeria2025</strong></li>
+                        <li>Comparte tus fotos con el hashtag <strong>#XVRaquelita2024</strong></li>
                         <li>Este pase es personal e intransferible</li>
                     </ol>
                 </div>
@@ -648,9 +693,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h3 class="footer-logo">XV Raquelita 2026</h3>
+                    <h3 class="footer-logo">XV Raquelita 2024</h3>
                     <p>Celebrando 15 años de sueños, alegrías y bendiciones</p>
-                    <p>16 de Mayo, 2026 • Salón Jardines del Paraíso</p>
+                    <p>15 de Diciembre, 2024 • Antigua Guatemala, Guatemala</p>
                     <div class="footer-countdown">
                         <p><i class="fas fa-hourglass-half"></i> Faltan <span id="footerDays">00</span> días para la celebración</p>
                     </div>
@@ -670,24 +715,25 @@
                 
                 <div class="footer-contact">
                     <h4>Contacto</h4>
-                    <p><i class="fas fa-phone"></i> +52 55 1234 5678 (Familia Raquelitos)</p>
-                  
-                    <p><i class="fas fa-map-pin"></i> Jalapa, Guatemala</p>
+                    <p><i class="fas fa-phone"></i> +502 1234 5678 (Familia Hernández)</p>
+                    <p><i class="fas fa-map-pin"></i> Antigua Guatemala, Guatemala</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i> @XV</a>
-                        <a href="#"><i class="fab fa-facebook"></i> XV Años</a>
-                        <a href="#"><i class="fab fa-tiktok"></i> @XV</a>
+                        <a href="#"><i class="fab fa-instagram"></i> @XVRaquelita2024</a>
+                        <a href="#"><i class="fab fa-facebook"></i> XV Años Raquelita</a>
+                        <a href="#"><i class="fab fa-tiktok"></i> @XVRaquelita</a>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
                 <p>Con todo mi amor para mi familia y amigos ❤️ Este día será inolvidable gracias a ustedes.</p>
-                <p class="copyright">© 2026 XV Años de Raquelita. Diseñado con amor para una celebración especial.</p>
+                <p class="copyright">© 2024 XV Años de Raquelita. Diseñado con amor para una celebración especial en Guatemala.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

@@ -12,6 +12,8 @@
     --shadow-strong: 0 10px 30px rgba(0, 0, 0, 0.15);
     --transition: all 0.3s ease;
     --border-radius: 12px;
+    --spotify-green: #1DB954;
+    --spotify-dark: #191414;
 }
 
 * {
@@ -120,9 +122,9 @@ section {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(10px);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     padding: 15px 0;
 }
@@ -157,10 +159,13 @@ section {
     display: flex;
     align-items: center;
     gap: 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .nav-link:hover {
     color: var(--primary);
+    background-color: rgba(212, 165, 195, 0.1);
 }
 
 .nav-link i {
@@ -174,50 +179,10 @@ section {
     font-size: 1.5rem;
     color: var(--dark);
     cursor: pointer;
-}
-
-/* Botón de música - CORREGIDO */
-.music-btn-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1001; /* Mayor que el navbar (1000) */
-}
-
-.music-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background-color: rgba(255, 255, 255, 0.95);
-    color: var(--dark);
-    border-radius: 30px;
-    border: 2px solid var(--primary);
-    cursor: pointer;
-    transition: var(--transition);
-    font-weight: 600;
-    box-shadow: var(--shadow);
     z-index: 1002;
-    font-size: 0.9rem;
 }
 
-.music-btn:hover {
-    background-color: var(--primary);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-strong);
-}
-
-.music-btn i {
-    font-size: 1.1rem;
-}
-
-.music-btn.playing {
-    background-color: var(--primary);
-    color: white;
-}
-
-/* Header y Hero */
+/* Header y Hero - MEJORADO con diseño Spotify */
 header {
     position: relative;
     height: 100vh;
@@ -228,6 +193,7 @@ header {
     color: white;
     overflow: hidden;
     margin-top: 60px; /* Compensa la navbar fija */
+    padding-top: 80px;
 }
 
 .hero-image {
@@ -236,7 +202,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('https://t3.ftcdn.net/jpg/05/69/37/58/360_F_569375878_2JiwCbNu90Iy0CYPKv0f3PxPvG1NiyDj.jpg');
+    background-image: url('https://upload.wikimedia.org/wikipedia/commons/2/23/Quincea%C3%B1era._Santa_Fe_%2814369403262%29.jpg');
     background-size: cover;
     background-position: center;
     filter: brightness(0.7);
@@ -253,10 +219,207 @@ header {
     z-index: -1;
 }
 
+/* Contenedor estilo Spotify */
+.spotify-container {
+    position: absolute;
+    top: 120px;
+    left: 50px;
+    width: 400px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.spotify-player {
+    background-color: rgba(25, 20, 20, 0.9);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spotify-header {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    background: linear-gradient(to right, rgba(29, 185, 84, 0.1), rgba(25, 20, 20, 0.9));
+}
+
+.spotify-cover {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.spotify-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spotify-play-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(29, 185, 84, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.spotify-cover:hover .spotify-play-btn {
+    opacity: 1;
+}
+
+.spotify-play-btn i {
+    font-size: 3rem;
+    color: white;
+}
+
+.spotify-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+
+.spotify-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 5px;
+}
+
+.spotify-artist {
+    font-size: 1rem;
+    color: #b3b3b3;
+    margin-bottom: 20px;
+}
+
+.spotify-progress {
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #535353;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 30%;
+    height: 100%;
+    background-color: var(--spotify-green);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.progress-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #b3b3b3;
+}
+
+.spotify-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.play-btn {
+    background-color: var(--spotify-green);
+    width: 50px;
+    height: 50px;
+}
+
+.play-btn:hover {
+    background-color: #1ed760;
+    transform: scale(1.1);
+}
+
+.play-btn.playing i {
+    content: "\f04c"; /* Icono de pausa */
+}
+
+.spotify-now-playing {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    color: #b3b3b3;
+}
+
+.spotify-now-playing i {
+    color: var(--spotify-green);
+    margin-right: 8px;
+}
+
+.spotify-now-playing span {
+    color: white;
+    font-weight: 500;
+}
+
+.welcome-message {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.welcome-message h2 {
+    color: var(--accent);
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.welcome-message p {
+    color: var(--text);
+    font-size: 1rem;
+}
+
 .hero-content {
     z-index: 1;
     max-width: 800px;
     padding: 20px;
+    margin-left: 450px;
 }
 
 .hero-title {
@@ -359,6 +522,7 @@ header {
     color: white;
     font-size: 1.5rem;
     animation: bounce 2s infinite;
+    z-index: 1;
 }
 
 @keyframes bounce {
@@ -783,7 +947,7 @@ header {
     margin-right: 10px;
 }
 
-/* Sección de galería mejorada */
+/* Sección de galería */
 .gallery-controls {
     display: flex;
     justify-content: center;
@@ -1023,6 +1187,14 @@ header {
     box-shadow: 0 0 0 2px rgba(212, 165, 195, 0.2);
 }
 
+.form-hint {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-style: italic;
+}
+
 .form-group textarea {
     min-height: 120px;
     resize: vertical;
@@ -1091,6 +1263,16 @@ header {
     color: white;
     font-size: 2rem;
     margin-bottom: 5px;
+}
+
+.ticket-country {
+    margin-top: 10px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.ticket-country i {
+    margin-right: 8px;
 }
 
 .ticket-body {
@@ -1353,22 +1535,49 @@ footer {
     }
 }
 
-/* Responsividad */
+/* Animación de progreso de la canción */
+@keyframes progressAnimation {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Responsividad MEJORADA */
+@media (max-width: 1200px) {
+    .hero-content {
+        margin-left: 400px;
+        padding-top: 100px;
+    }
+    
+    .spotify-container {
+        left: 30px;
+        width: 350px;
+    }
+}
+
 @media (max-width: 992px) {
     .nav-menu {
         display: none;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 0;
         left: 0;
         width: 100%;
-        background-color: white;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.98);
         flex-direction: column;
-        padding: 20px;
+        padding: 80px 20px 20px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        overflow-y: auto;
+        z-index: 1001;
     }
     
     .nav-menu.active {
         display: flex;
+    }
+    
+    .nav-link {
+        padding: 15px;
+        font-size: 1.1rem;
+        justify-content: center;
     }
     
     .nav-toggle {
@@ -1381,6 +1590,20 @@ footer {
     
     .timeline:before {
         left: 20px;
+    }
+    
+    .hero-content {
+        margin-left: 0;
+        padding-top: 150px;
+    }
+    
+    .spotify-container {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto 40px;
     }
 }
 
@@ -1418,22 +1641,19 @@ footer {
         flex-direction: column;
     }
     
-    /* Ajustes para el botón de música en móviles */
-    .music-btn span {
-        display: none;
+    .spotify-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
     
-    .music-btn {
-        padding: 12px 15px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        justify-content: center;
+    .spotify-cover {
+        width: 180px;
+        height: 180px;
     }
     
-    .music-btn i {
-        font-size: 1.3rem;
-        margin: 0;
+    .spotify-info {
+        width: 100%;
     }
     
     section {
@@ -1503,9 +1723,20 @@ footer {
         height: 180px;
     }
     
-    /* Ajustes adicionales para móviles pequeños */
-    .music-btn-container {
-        top: 15px;
-        right: 15px;
+    .spotify-container {
+        width: 100%;
+    }
+    
+    .spotify-cover {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .spotify-title {
+        font-size: 1.3rem;
+    }
+    
+    .spotify-artist {
+        font-size: 0.9rem;
     }
 }
