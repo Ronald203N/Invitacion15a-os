@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años - Valeria</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navegación fija -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo">XV Valeria</div>
+            <div class="nav-menu">
+                <a href="#inicio" class="nav-link"><i class="fas fa-home"></i> Inicio</a>
+                <a href="#invitacion" class="nav-link"><i class="fas fa-heart"></i> Invitación</a>
+                <a href="#informacion" class="nav-link"><i class="fas fa-info-circle"></i> Información</a>
+                <a href="#itinerario" class="nav-link"><i class="fas fa-clock"></i> Itinerario</a>
+                <a href="#ubicaciones" class="nav-link"><i class="fas fa-map-marker-alt"></i> Ubicaciones</a>
+                <a href="#vestimenta" class="nav-link"><i class="fas fa-tshirt"></i> Vestimenta</a>
+                <a href="#padrinos" class="nav-link"><i class="fas fa-users"></i> Padrinos</a>
+                <a href="#galeria" class="nav-link"><i class="fas fa-images"></i> Galería</a>
+                <a href="#confirmacion" class="nav-link"><i class="fas fa-check-circle"></i> Confirmar</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Botón de música -->
+    <div class="music-btn-container">
+        <button id="musicBtn" class="music-btn">
+            <i class="fas fa-play"></i>
+            <span>Reproducir música</span>
+        </button>
+        <audio id="backgroundMusic" loop>
+            <source src="https://assets.mixkit.co/music/preview/mixkit-memories-128.mp3" type="audio/mpeg">
+            Tu navegador no soporta el elemento de audio.
+        </audio>
+    </div>
+
+    <!-- Header con Hero Section -->
+    <header id="inicio">
+        <div class="hero-image"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Mis XV Años</h1>
+            <div class="name-overlay">
+                <h2 class="hero-name">Valeria</h2>
+            </div>
+            <p class="hero-subtitle">Una celebración de amor, alegría y nuevos comienzos</p>
+            
+            <!-- Contador regresivo -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span id="days" class="countdown-number">00</span>
+                    <span class="countdown-label">Días</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours" class="countdown-number">00</span>
+                    <span class="countdown-label">Horas</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes" class="countdown-number">00</span>
+                    <span class="countdown-label">Minutos</span>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds" class="countdown-number">00</span>
+                    <span class="countdown-label">Segundos</span>
+                </div>
+            </div>
+            
+            <div class="countdown-note">
+                <p><i class="fas fa-calendar-alt"></i> Faltan para el gran día: <strong>16 de Abril, 2026</strong></p>
+            </div>
+            
+            <a href="#invitacion" class="btn hero-btn">Ver invitación completa</a>
+        </div>
+        
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Sección de invitación -->
+    <section id="invitacion" class="section">
+        <div class="container">
+            <h2>¡Te invito a mi celebración!</h2>
+            <div class="invitation-content">
+                <div class="invitation-text">
+                    <p class="intro-text">
+                        Querida familia y amigos,<br><br>
+                        Con gran alegría y emoción, quiero invitarte a compartir conmigo uno de los momentos más especiales de mi vida: la celebración de mis XV años. Este día representa no solo mi transición hacia una nueva etapa, sino también la oportunidad de reunirme con las personas que más quiero para crear recuerdos inolvidables juntos.
+                    </p>
+                    <p class="intro-text">
+                        Deseo que seas parte de esta fiesta llena de amor, música y felicidad. Tu presencia hará que este día sea aún más mágico y significativo para mí.
+                    </p>
+                    <div class="quote-box">
+                        <i class="fas fa-quote-left"></i>
+                        <p class="quote-text">La vida es una celebración, y hoy quiero celebrarla contigo</p>
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <p class="signature">Con todo mi cariño,<br><span>Valeria</span></p>
+                </div>
+                <div class="invitation-image">
+                    <div class="floral-decoration">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de información -->
+    <section id="informacion" class="section section-light">
+        <div class="container">
+            <h2>Detalles de la Celebración</h2>
+            <div class="celebration-details">
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="far fa-calendar-alt"></i>
+                    </div>
+                    <h3>Fecha</h3>
+                    <p class="detail-date">Sábado, 15 de Noviembre 2025</p>
+                    <p class="detail-note">Reserva la fecha en tu agenda</p>
+                </div>
+                
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3>Celebración</h3>
+                    <p><strong>Misa:</strong> 16:00 hrs</p>
+                    <p><strong>Recepcíon:</strong> 17:30 hrs</p>
+                    <p><strong>Cena:</strong> 19:00 hrs</p>
+                    <p><strong>Fiesta:</strong> 21:00 hrs</p>
+                </div>
+                
+                <div class="detail-card">
+                    <div class="detail-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>Invitados</h3>
+                    <p>Familiares y amigos cercanos</p>
+                    <p>Confirmación requerida</p>
+                    <p>Niños bienvenidos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva sección: Itinerario del día -->
+    <section id="itinerario" class="section">
+        <div class="container">
+            <h2>Itinerario del Día</h2>
+            <p class="section-subtitle">Así transcurrirá este día tan especial</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">15:30</div>
+                    <div class="timeline-content">
+                        <h3>Llegada a la iglesia</h3>
+                        <p>Recepción de invitados en la Parroquia de Santa María</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">16:00</div>
+                    <div class="timeline-content">
+                        <h3>Misa de Acción de Gracias</h3>
+                        <p>Ceremonia religiosa para agradecer mis primeros 15 años</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">17:30</div>
+                    <div class="timeline-content">
+                        <h3>Recepción en el salón</h3>
+                        <p>Bienvenida con cóctel de bienvenida y fotografía</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">19:00</div>
+                    <div class="timeline-content">
+                        <h3>Cena</h3>
+                        <p>Banquete especial con menú para todos los gustos</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">20:30</div>
+                    <div class="timeline-content">
+                        <h3>Vals y rituales</h3>
+                        <p>Vals con mis padres, cambio de zapatillas y otros rituales tradicionales</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">21:00</div>
+                    <div class="timeline-content">
+                        <h3>¡A bailar!</h3>
+                        <p>Fiesta con música, sorpresas y mucha diversión</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-time">01:00</div>
+                    <div class="timeline-content">
+                        <h3>Brindis y pastel</h3>
+                        <p>Brindis final y corte del pastel de XV años</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de ubicaciones -->
+    <section id="ubicaciones" class="section section-light">
+        <div class="container">
+            <h2>Ubicaciones</h2>
+            <p class="section-subtitle">Encuentra los lugares donde se llevarán a cabo los eventos</p>
+            
+            <div class="locations">
+                <div class="location-card">
+                    <div class="location-icon">
+                        <i class="fas fa-church"></i>
+                    </div>
+                    <h3>Misa de Acción de Gracias</h3>
+                    <p><strong>Parroquia de Santa María</strong></p>
+                    <p>Av. Principal #123, Colonia Centro</p>
+                    <p>Ciudad de México, CDMX</p>
+                    <a href="https://www.google.com/maps/place/Catedral+Metropolitana+de+la+Ciudad+de+M%C3%A9xico/@19.4344475,-99.1343385,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1f92b75aa014d:0x8d958c1855f0d35a!8m2!3d19.4344475!4d-99.1321498!16zL20vMDM0cW5j?entry=ttu" target="_blank" class="btn location-btn">
+                        <i class="fas fa-map-marker-alt"></i> Ver en mapa
+                    </a>
+                </div>
+                
+                <div class="location-card">
+                    <div class="location-icon">
+                        <i class="fas fa-glass-cheers"></i>
+                    </div>
+                    <h3>Salón de Fiesta</h3>
+                    <p><strong>Salón "Jardines del Paraíso"</strong></p>
+                    <p>Calle de las Flores #456, Jardines del Valle</p>
+                    <p>Ciudad de México, CDMX</p>
+                    <a href="https://www.google.com/maps/place/Salon+Los+Jardines/@19.3781358,-99.1785753,17z/data=!3m1!4b1!4m6!3m5!1s0x85d1ff83c3a2c173:0x6f5b56e3664272a0!8m2!3d19.3781358!4d-99.1760004!16s%2Fg%2F11bbr7sttz?entry=ttu" target="_blank" class="btn location-btn">
+                        <i class="fas fa-map-marker-alt"></i> Ver en mapa
+                    </a>
+                </div>
+            </div>
+            
+            <div class="transport-note">
+                <p><i class="fas fa-car"></i> <strong>Estacionamiento disponible</strong> en ambos lugares</p>
+                <p><i class="fas fa-taxi"></i> <strong>Servicio de taxis</strong> recomendado para regreso</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de vestimenta -->
+    <section id="vestimenta" class="section">
+        <div class="container">
+            <h2>Vestimenta</h2>
+            <p class="section-subtitle">Te sugerimos vestir de acuerdo a la ocasión</p>
+            
+            <div class="dress-code">
+                <div class="dress-option">
+                    <div class="dress-icon">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>Para Mujeres</h3>
+                    <p>Vestido formal o de gala</p>
+                    <p>Colores: Pasteles o tonos elegantes</p>
+                    <div class="color-samples">
+                        <div class="color-sample" style="background-color: #f8e8ee;" title="Rosa pálido"></div>
+                        <div class="color-sample" style="background-color: #d4a5c3;" title="Rosa lila"></div>
+                        <div class="color-sample" style="background-color: #a2678a;" title="Morado claro"></div>
+                        <div class="color-sample" style="background-color: #f5e6ef;" title="Blanco roto"></div>
+                    </div>
+                </div>
+                
+                <div class="dress-option">
+                    <div class="dress-icon">
+                        <i class="fas fa-male"></i>
+                    </div>
+                    <h3>Para Hombres</h3>
+                    <p>Traje formal o de vestir</p>
+                    <p>Preferentemente de tonos oscuros</p>
+                    <div class="color-samples">
+                        <div class="color-sample" style="background-color: #4a3b4f;" title="Morado oscuro"></div>
+                        <div class="color-sample" style="background-color: #2c1e30;" title="Vino"></div>
+                        <div class="color-sample" style="background-color: #3a2c40;" title="Púrpura"></div>
+                        <div class="color-sample" style="background-color: #1a1a2e;" title="Azul marino"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dress-note">
+                <p><i class="fas fa-info-circle"></i> <strong>Código de vestimenta formal.</strong> Agradecemos respetar la elegancia del evento. Evitar jeans, playeras o ropa informal.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nueva sección: Padrinos y Comité -->
+    <section id="padrinos" class="section section-light">
+        <div class="container">
+            <h2>Padrinos y Comité</h2>
+            <p class="section-subtitle">Agradezco a quienes hacen posible este sueño</p>
+            
+            <div class="padrinos-grid">
+                <div class="padrino-card">
+                    <div class="padrino-icon">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <h3>Padrinos de Anillos</h3>
+                    <p class="padrino-names">Tíos: María y Roberto Sánchez</p>
+                </div>
+                
+                <div class="padrino-card">
+                    <div class="padrino-icon">
+                        <i class="fas fa-bible"></i>
+                    </div>
+                    <h3>Padrinos de Biblia</h3>
+                    <p class="padrino-names">Abuelos: Carmen y Jorge González</p>
+                </div>
+                
+                <div class="padrino-card">
+                    <div class="padrino-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Padrinos de Mesa</h3>
+                    <p class="padrino-names">Familia Pérez y Familia Rodríguez</p>
+                </div>
+                
+                <div class="padrino-card">
+                    <div class="padrino-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3>Comité de Damas</h3>
+                    <p class="padrino-names">Mis mejores amigas: Sofía, Camila, Andrea y Daniela</p>
+                </div>
+                
+                <div class="padrino-card">
+                    <div class="padrino-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <h3>Padrinos de Música</h3>
+                    <p class="padrino-names">Primos: Alejandro y Javier Fernández</p>
+                </div>
+                
+                <div class="padrino-card">
+                    <div class="padrino-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Padrinos de Recuerdos</h3>
+                    <p class="padrino-names">Tíos: Patricia y Luis Martínez</p>
+                </div>
+            </div>
+            
+            <div class="agradecimiento">
+                <p><i class="fas fa-heart"></i> Un agradecimiento especial a mis padres, <strong>Laura y Carlos</strong>, por hacer posible este sueño y por su amor incondicional.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de galería -->
+    <section id="galeria" class="section">
+        <div class="container">
+            <h2>Momentos Especiales</h2>
+            <p class="section-subtitle">Algunos recuerdos que quiero compartir contigo</p>
+            
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80');"></div>
+                    <div class="gallery-caption">Mi último cumpleaños</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80');"></div>
+                    <div class="gallery-caption">Con mi familia</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1052&q=80');"></div>
+                    <div class="gallery-caption">En la playa</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1051&q=80');"></div>
+                    <div class="gallery-caption">Con mis mejores amigas</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');"></div>
+                    <div class="gallery-caption">Mis 14 años</div>
+                </div>
+                
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80');"></div>
+                    <div class="gallery-caption">Sesión de fotos XV</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de confirmación de asistencia -->
+    <section id="confirmacion" class="section section-light">
+        <div class="container">
+            <h2>Confirmación de Asistencia</h2>
+            <p class="section-subtitle">Por favor, confirma tu asistencia antes del 1 de Noviembre de 2025</p>
+            
+            <div class="confirmation-form">
+                <form id="attendanceForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Nombre completo *</label>
+                            <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input type="email" id="email" name="email" placeholder="tu@email.com">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Teléfono (opcional)</label>
+                            <input type="tel" id="phone" name="phone" placeholder="55 1234 5678">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guests">Número de acompañantes</label>
+                            <select id="guests" name="guests">
+                                <option value="0">0 - Solo yo</option>
+                                <option value="1">1 acompañante</option>
+                                <option value="2">2 acompañantes</option>
+                                <option value="3">3 acompañantes</option>
+                                <option value="4">4 acompañantes</option>
+                                <option value="5">5 o más acompañantes</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje especial para la quinceañera (opcional)</label>
+                        <textarea id="message" name="message" placeholder="Escribe un mensaje para Valeria..."></textarea>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="asistencia" name="asistencia" required>
+                        <label for="asistencia">Confirmo que asistiré a la celebración de XV años de Valeria *</label>
+                    </div>
+                    
+                    <button type="button" id="confirmBtn" class="btn confirm-btn">
+                        <i class="fas fa-check-circle"></i> Confirmar asistencia
+                    </button>
+                </form>
+                
+                <div class="form-note">
+                    <p><i class="fas fa-info-circle"></i> Al confirmar, se abrirá WhatsApp para enviar tu confirmación automáticamente al número de la quinceañera. Luego recibirás tu pase de acceso digital para el evento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección del pase de acceso -->
+    <section id="pase" class="section pase-section" style="display: none;">
+        <div class="container">
+            <h2>¡Gracias por confirmar!</h2>
+            <p class="section-subtitle">Tu pase de acceso ha sido generado</p>
+            
+            <div class="ticket-container">
+                <div class="ticket">
+                    <div class="ticket-header">
+                        <h3>Pase de Acceso Exclusivo</h3>
+                        <p>XV Años de Valeria • 15 de Noviembre, 2025</p>
+                    </div>
+                    
+                    <div class="ticket-body">
+                        <div class="ticket-info">
+                            <div class="ticket-field">
+                                <span class="ticket-label">Invitado:</span>
+                                <span id="ticketName" class="ticket-value">Nombre del invitado</span>
+                            </div>
+                            
+                            <div class="ticket-field">
+                                <span class="ticket-label">Acompañantes:</span>
+                                <span id="ticketGuests" class="ticket-value">0</span>
+                            </div>
+                            
+                            <div class="ticket-field">
+                                <span class="ticket-label">Evento:</span>
+                                <span class="ticket-value">Celebración de XV Años</span>
+                            </div>
+                            
+                            <div class="ticket-field">
+                                <span class="ticket-label">Fecha:</span>
+                                <span class="ticket-value">15 de Noviembre, 2025</span>
+                            </div>
+                            
+                            <div class="ticket-field">
+                                <span class="ticket-label">Hora de recepción:</span>
+                                <span class="ticket-value">17:30 hrs</span>
+                            </div>
+                            
+                            <div class="ticket-field">
+                                <span class="ticket-label">Lugar:</span>
+                                <span class="ticket-value">Salón "Jardines del Paraíso"</span>
+                            </div>
+                        </div>
+                        
+                        <div class="ticket-barcode">
+                            <div class="barcode"></div>
+                            <p class="barcode-number">XV-2025-<span id="ticketCode">0000</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-footer">
+                        <p><i class="fas fa-info-circle"></i> Presenta este pase en la entrada del salón. Puedes mostrar la captura de pantalla o imprimirlo.</p>
+                        <div class="ticket-actions">
+                            <button id="saveTicketBtn" class="btn ticket-btn">
+                                <i class="fas fa-download"></i> Guardar pase
+                            </button>
+                            <button id="newConfirmationBtn" class="btn ticket-btn btn-secondary">
+                                <i class="fas fa-undo"></i> Nueva confirmación
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-instructions">
+                    <h4><i class="fas fa-lightbulb"></i> Instrucciones:</h4>
+                    <ol>
+                        <li>Toma una captura de pantalla de este pase o guárdalo como imagen</li>
+                        <li>Muéstralo en la entrada del salón el día del evento</li>
+                        <li>Llega puntual para disfrutar de todas las actividades</li>
+                        <li>Comparte tus fotos con el hashtag <strong>#XVValeria2025</strong></li>
+                        <li>Este pase es personal e intransferible</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3 class="footer-logo">XV Valeria 2025</h3>
+                    <p>Celebrando 15 años de sueños, alegrías y bendiciones</p>
+                    <p>15 de Noviembre, 2025 • Salón Jardines del Paraíso</p>
+                    <div class="footer-countdown">
+                        <p><i class="fas fa-hourglass-half"></i> Faltan <span id="footerDays">00</span> días para la celebración</p>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                        <li><a href="#invitacion"><i class="fas fa-heart"></i> Invitación</a></li>
+                        <li><a href="#itinerario"><i class="fas fa-clock"></i> Itinerario</a></li>
+                        <li><a href="#ubicaciones"><i class="fas fa-map-marker-alt"></i> Ubicaciones</a></li>
+                        <li><a href="#vestimenta"><i class="fas fa-tshirt"></i> Vestimenta</a></li>
+                        <li><a href="#confirmacion"><i class="fas fa-check-circle"></i> Confirmar</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-phone"></i> +52 55 1234 5678 (Familia González)</p>
+                    <p><i class="fas fa-envelope"></i> xvvaleria2025@gmail.com</p>
+                    <p><i class="fas fa-map-pin"></i> Ciudad de México, México</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i> @XVValeria2025</a>
+                        <a href="#"><i class="fab fa-facebook"></i> XV Años Valeria</a>
+                        <a href="#"><i class="fab fa-tiktok"></i> @XVValeria</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Con todo mi amor para mi familia y amigos ❤️ Este día será inolvidable gracias a ustedes.</p>
+                <p class="copyright">© 2025 XV Años de Valeria. Diseñado con amor para una celebración especial.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
