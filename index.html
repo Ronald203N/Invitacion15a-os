@@ -3,267 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis XV Años - Raquelita</title>
+    <title>XV Años - Raquel Ester Alessandry Pitter Duarte</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
 <body>
-    <!-- Navegación fija -->
-    <nav class="main-nav">
+    <!-- Mariposas decorativas -->
+    <div class="mariposas-container">
+        <div class="mariposa m1">🦋</div>
+        <div class="mariposa m2">🦋</div>
+        <div class="mariposa m3">🦋</div>
+        <div class="mariposa m4">🦋</div>
+        <div class="mariposa m5">🦋</div>
+        <div class="mariposa m6">🦋</div>
+        <div class="mariposa m7">🦋</div>
+        <div class="mariposa m8">🦋</div>
+    </div>
+
+    <!-- Navegación -->
+    <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">XV Raquelita</div>
-            <div class="nav-menu">
-                <a href="#inicio" class="nav-link"><i class="fas fa-home"></i> Inicio</a>
-                <a href="#invitacion" class="nav-link"><i class="fas fa-heart"></i> Invitación</a>
-                <a href="#informacion" class="nav-link"><i class="fas fa-info-circle"></i> Información</a>
-                <a href="#itinerario" class="nav-link"><i class="fas fa-clock"></i> Itinerario</a>
-                <a href="#ubicaciones" class="nav-link"><i class="fas fa-map-marker-alt"></i> Ubicaciones</a>
-                <a href="#vestimenta" class="nav-link"><i class="fas fa-tshirt"></i> Vestimenta</a>
-                <a href="#padrinos" class="nav-link"><i class="fas fa-users"></i> Padrinos</a>
-                <a href="#galeria" class="nav-link"><i class="fas fa-images"></i> Galería</a>
-                <a href="#confirmacion" class="nav-link"><i class="fas fa-check-circle"></i> Confirmar</a>
+            <div class="nav-logo">
+                <span class="logo-text">XV Raquel Ester</span>
             </div>
-            <button class="nav-toggle" id="navToggle">
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#historia">Nuestra Historia</a></li>
+                <li><a href="#itinerario">Itinerario</a></li>
+                <li><a href="#ubicaciones">Ubicaciones</a></li>
+                <li><a href="#padrinos">Padrinos</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#confirmar">Confirmar</a></li>
+            </ul>
+            <button class="menu-toggle">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Header con Hero Section mejorado con diseño Spotify -->
-    <header id="inicio">
-        <div class="hero-image"></div>
+    <!-- Sección Inicio -->
+    <section id="inicio" class="hero-section">
         <div class="hero-overlay"></div>
-        
-        <!-- Contenedor estilo Spotify con imagen de la quinceañera y reproductor -->
-        <div class="spotify-container">
-            <div class="spotify-player">
-                <div class="spotify-header">
-                    <div class="spotify-cover">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Raquelita - Quinceañera">
-                        <div class="spotify-play-btn" id="spotifyPlayBtn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <div class="spotify-info">
-                        <h3 class="spotify-title">Mi Canción Especial</h3>
-                        <p class="spotify-artist">Raquelita - XV Años</p>
-                        <div class="spotify-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill"></div>
-                            </div>
-                            <div class="progress-time">
-                                <span>0:00</span>
-                                <span>3:45</span>
-                            </div>
-                        </div>
-                        <div class="spotify-controls">
-                            <button class="control-btn"><i class="fas fa-step-backward"></i></button>
-                            <button class="control-btn play-btn" id="musicBtn">
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <button class="control-btn"><i class="fas fa-step-forward"></i></button>
-                            <button class="control-btn volume-btn">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="spotify-now-playing">
-                    <p><i class="fas fa-headphones"></i> Reproduciendo: <span>Mi Canción Especial - XV Raquelita</span></p>
-                </div>
-            </div>
-            
-            <div class="welcome-message">
-                <h2>¡Bienvenidos a mis XV años!</h2>
-                <p>Escucha mi canción especial mientras exploras mi invitación</p>
-            </div>
-        </div>
-        
-        <!-- Elemento de audio -->
-        <audio id="backgroundMusic" loop>
-            <source src="Chayanne - Tiempo De Vals (Vídeo Oficial).mp3" type="audio/mpeg">
-            Tu navegador no soporta el elemento de audio.
-        </audio>
-        
         <div class="hero-content">
-            <h1 class="hero-title">Mis XV Años</h1>
-            <div class="name-overlay">
-                <h2 class="hero-name">Raquelita</h2>
-            </div>
-            <p class="hero-subtitle">Una celebración de amor, alegría y nuevos comienzos</p>
-            
-            <!-- Contador regresivo -->
-            <div class="countdown">
-                <div class="countdown-item">
-                    <span id="days" class="countdown-number">00</span>
-                    <span class="countdown-label">Días</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="hours" class="countdown-number">00</span>
-                    <span class="countdown-label">Horas</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="minutes" class="countdown-number">00</span>
-                    <span class="countdown-label">Minutos</span>
-                </div>
-                <div class="countdown-item">
-                    <span id="seconds" class="countdown-number">00</span>
-                    <span class="countdown-label">Segundos</span>
-                </div>
-            </div>
-            
-            <div class="countdown-note">
-                <p><i class="fas fa-calendar-alt"></i> Faltan para el gran día: <strong>15 de Diciembre, 2024</strong></p>
-            </div>
-            
-            <a href="#invitacion" class="btn hero-btn">Ver invitación completa</a>
-        </div>
+            <div class="hero-text">
+                <h3 class="hero-subtitle">Con la bendición de Dios y el amor de mi familia</h3>
+                <h1 class="hero-title">Raquel Ester</h1>
+                <div class="hero-border"></div>
+                <h2 class="hero-quince">Mis XV Años</h2>
+                <p class="hero-date">16 de Mayo de 2026</p>
+                <div class="music-player">
+    <p class="music-text"><i class="fas fa-music"></i> Presiona PLAY para la música</p>
+    
+    <div class="music-controls">
+        <button class="music-btn play-btn" id="playBtn"><i class="fas fa-play"></i></button>
+        <button class="music-btn pause-btn" id="pauseBtn"><i class="fas fa-pause"></i></button>
         
+        <!-- Control de volumen -->
+        <div class="volume-control">
+            <button class="music-btn volume-btn" id="volumeBtn"><i class="fas fa-volume-up"></i></button>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70">
+        </div>
+    </div>
+    
+    <!-- Barra de progreso -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar">
+            <div class="progress" id="progress"></div>
+        </div>
+        <div class="time-display">
+            <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+        </div>
+    </div>
+</div>
+
+<audio id="backgroundAudio" loop preload="auto" style="display: none;">
+    <!-- CAMBIA "cancion-xv.mp3" POR EL NOMBRE EXACTO DE TU ARCHIVO -->
+    <source src="Chayanne - Tiempo De Vals (Vídeo Oficial).mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+</audio>
+
+
+
+            </div>
+            <div class="hero-image">
+                <div class="image-frame">
+                    <div class="frame-border"></div>
+                    <div class="frame-photo">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Raquel Ester - Quinceañera" class="quince-photo">
+                        <div class="photo-overlay">
+                            <div class="photo-text">
+                                <span class="photo-name">Raquel Ester</span>
+                                <span class="photo-sub">Alessandry Pitter Duarte</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="scroll-indicator">
-            <i class="fas fa-chevron-down"></i>
+            <a href="#historia" class="scroll-link">
+                <i class="fas fa-chevron-down"></i>
+            </a>
         </div>
-    </header>
+    </section>
 
-    <!-- Sección de invitación -->
-    <section id="invitacion" class="section">
+    <!-- Contador -->
+    <section class="countdown-section">
         <div class="container">
-            <h2>¡Te invito a mi celebración!</h2>
-            <div class="invitation-content">
-                <div class="invitation-text">
-                    <p class="intro-text">
-                        Querida familia y amigos,<br><br>
-                        Con gran alegría y emoción, quiero invitarte a compartir conmigo uno de los momentos más especiales de mi vida: la celebración de mis XV años. Este día representa no solo mi transición hacia una nueva etapa, sino también la oportunidad de reunirme con las personas que más quiero para crear recuerdos inolvidables juntos.
+            <h2 class="section-title">Faltan</h2>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Días</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Horas</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutos</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Segundos</div>
+                </div>
+            </div>
+            <p class="countdown-text">Para el día más especial de mi vida</p>
+        </div>
+    </section>
+
+    <!-- Sección Historia -->
+    <section id="historia" class="story-section">
+        <div class="container">
+            <h2 class="section-title">Nuestra Historia</h2>
+            <div class="story-content">
+                <div class="story-text">
+                    <p class="story-paragraph">
+                        Porque esta noche es muy importante para mí, quiero compartirla con las personas que llevo en el corazón. Porque sos una de ellas, quisiera que estés presente en una de las noches más inolvidables de mi vida.
                     </p>
-                    <p class="intro-text">
-                        Deseo que seas parte de esta fiesta llena de amor, música y felicidad. Tu presencia hará que este día sea aún más mágico y significativo para mí.
-                    </p>
-                    <div class="quote-box">
-                        <i class="fas fa-quote-left"></i>
-                        <p class="quote-text">La vida es una celebración, y hoy quiero celebrarla contigo</p>
-                        <i class="fas fa-quote-right"></i>
-                    </div>
-                    <p class="signature">Con todo mi cariño,<br><span>Raquelita</span></p>
-                </div>
-                <div class="invitation-image">
-                    <div class="floral-decoration">
-                        <i class="fas fa-heart"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-heart"></i>
+                    <div class="parents-message">
+                        <h3 class="parents-title">Un mensaje de mis padres</h3>
+                        <p class="parents-text">
+                            Hoy celebramos mucho más que un cumpleaños. Celebramos a la hermosa persona en la que te has convertido: noble, valiente, alegre y llena de luz.
+                        </p>
+                        <p class="parents-text">
+                            Hace 15 años llegaste a nuestras vidas para enseñarnos el verdadero significado del amor, y desde entonces, cada día contigo ha sido un regalo. Verte crecer ha sido nuestra mayor bendición.
+                        </p>
+                        <p class="parents-signature">
+                            Con todo nuestro amor,<br>
+                            <strong>Raquel y Jonathan</strong>
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de información -->
-    <section id="informacion" class="section section-light">
-        <div class="container">
-            <h2>Detalles de la Celebración</h2>
-            <div class="celebration-details">
-                <div class="detail-card">
-                    <div class="detail-icon">
-                        <i class="far fa-calendar-alt"></i>
-                    </div>
-                    <h3>Fecha</h3>
-                    <p class="detail-date">Sábado, 15 de Diciembre 2024</p>
-                    <p class="detail-note">Reserva la fecha en tu agenda</p>
-                </div>
-                
-                <div class="detail-card">
-                    <div class="detail-icon">
-                        <i class="fas fa-glass-cheers"></i>
-                    </div>
-                    <h3>Celebración</h3>
-                    <p><strong>Misa:</strong> 16:00 hrs</p>
-                    <p><strong>Recepcíon:</strong> 17:30 hrs</p>
-                    <p><strong>Cena:</strong> 19:00 hrs</p>
-                    <p><strong>Fiesta:</strong> 21:00 hrs</p>
-                </div>
-                
-                <div class="detail-card">
-                    <div class="detail-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <h3>Invitados</h3>
-                    <p>Familiares y amigos cercanos</p>
-                    <p>Confirmación requerida</p>
-                    <p>Niños bienvenidos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de itinerario -->
-    <section id="itinerario" class="section">
-        <div class="container">
-            <h2>Itinerario del Día</h2>
-            <p class="section-subtitle">Así transcurrirá este día tan especial</p>
-            
-            <div class="timeline-container">
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-time">15:30</div>
-                        <div class="timeline-content">
-                            <h3>Llegada a la iglesia</h3>
-                            <p>Recepción de invitados en la Parroquia Nuestra Señora del Rosario</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-time">16:00</div>
-                        <div class="timeline-content">
-                            <h3>Misa de Acción de Gracias</h3>
-                            <p>Ceremonia religiosa para agradecer mis primeros 15 años</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-time">17:00</div>
-                        <div class="timeline-content">
-                            <h3>Sesión de fotos</h3>
-                            <p>Fotografías con familiares y amigos en los jardines de la iglesia</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-time">17:30</div>
-                        <div class="timeline-content">
-                            <h3>Recepción en el salón</h3>
-                            <p>Bienvenida con cóctel de bienvenida y fotografía</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-time">19:00</div>
-                        <div class="timeline-content">
-                            <h3>Cena</h3>
-                            <p>Banquete especial con platillos típicos guatemaltecos</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-time">20:30</div>
-                        <div class="timeline-content">
-                            <h3>Vals y rituales</h3>
-                            <p>Vals con mis padres, cambio de zapatillas y otros rituales tradicionales</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-time">21:00</div>
-                        <div class="timeline-content">
-                            <h3>¡A bailar!</h3>
-                            <p>Fiesta con marimba, música latina y mucha diversión</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-time">01:00</div>
-                        <div class="timeline-content">
-                            <h3>Brindis y pastel</h3>
-                            <p>Brindis final y corte del pastel de XV años</p>
+                <div class="story-image">
+                    <div class="story-frame">
+                        <div class="story-img-container">
+                            <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Familia">
                         </div>
                     </div>
                 </div>
@@ -271,23 +170,91 @@
         </div>
     </section>
 
-    <!-- Sección de ubicaciones -->
-    <section id="ubicaciones" class="section section-light">
+    <!-- Sección Itinerario -->
+    <section id="itinerario" class="itinerary-section">
         <div class="container">
-            <h2>Ubicaciones</h2>
-            <p class="section-subtitle">Encuentra los lugares donde se llevarán a cabo los eventos</p>
-            
-            <div class="locations">
+            <h2 class="section-title">Itinerario del Día</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">2:00 PM</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Preparación</h3>
+                        <p class="timeline-description">Preparativos finales y fotos previas</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">4:00 PM</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Santa Misa</h3>
+                        <p class="timeline-description">Ceremonia religiosa en la Parroquia Nuestra Señora del Carmen</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">5:30 PM</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Sesión de Fotos</h3>
+                        <p class="timeline-description">Fotos familiares y con padrinos en los jardines</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">7:00 PM</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Recepción</h3>
+                        <p class="timeline-description">Llegada al salón y bienvenida de invitados</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">8:00 PM</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Cena</h3>
+                        <p class="timeline-description">Banquete y brindis especial</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">9:00 PM</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Baile y Celebración</h3>
+                        <p class="timeline-description">Vals, baile con papá y fiesta</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">12:00 AM</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Pastel</h3>
+                        <p class="timeline-description">Corte del pastel y celebración</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">1:00 AM</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Fiesta</h3>
+                        <p class="timeline-description">Música y baile hasta el amanecer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Ubicaciones -->
+    <section id="ubicaciones" class="locations-section">
+        <div class="container">
+            <h2 class="section-title">Ubicaciones</h2>
+            <div class="locations-grid">
                 <div class="location-card">
                     <div class="location-icon">
                         <i class="fas fa-church"></i>
                     </div>
-                    <h3>Misa de Acción de Gracias</h3>
-                    <p><strong>Parroquia Nuestra Señora del Rosario</strong></p>
-                    <p>6a Avenida 7-10, Zona 1</p>
-                    <p>Antigua Guatemala, Guatemala</p>
-                    <a href="https://www.google.com/maps/place/Parroquia+Nuestra+Se%C3%B1ora+del+Rosario/@14.5589054,-90.733935,17z/data=!3m1!4b1!4m6!3m5!1s0x85890f8dce2b8f7b:0x44b4f8b5d3c5a5b1!8m2!3d14.5589054!4d-90.7317463!16s%2Fg%2F11b8z5q5q5?entry=ttu" target="_blank" class="btn location-btn">
-                        <i class="fas fa-map-marker-alt"></i> Ver en mapa
+                    <h3 class="location-title">Ceremonia Religiosa</h3>
+                    <p class="location-name">Parroquia Nuestra Señora del Carmen</p>
+                    <p class="location-details">
+                        <i class="fas fa-clock"></i> 4:00 PM<br>
+                        <i class="fas fa-calendar"></i> 16 de Mayo, 2026
+                    </p>
+                    <p class="location-address">
+                        Calle Principal #123, Centro Histórico
+                    </p>
+                    <a href="https://maps.google.com/?q=Parroquia+Nuestra+Señora+del+Carmen" target="_blank" class="location-btn">
+                        <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
                     </a>
                 </div>
                 
@@ -295,445 +262,365 @@
                     <div class="location-icon">
                         <i class="fas fa-glass-cheers"></i>
                     </div>
-                    <h3>Salón de Fiesta</h3>
-                    <p><strong>Salón "Jardines de la Antigua"</strong></p>
-                    <p>Calle del Arco 4-20, Zona 3</p>
-                    <p>Antigua Guatemala, Guatemala</p>
-                    <a href="https://www.google.com/maps/place/Antigua+Guatemala/@14.5589054,-90.733935,14z/data=!4m6!3m5!1s0x85890f8dce2b8f7b:0x44b4f8b5d3c5a5b1!8m2!3d14.5589054!4d-90.7317463!16zL20vMDJ3NzE?entry=ttu" target="_blank" class="btn location-btn">
-                        <i class="fas fa-map-marker-alt"></i> Ver en mapa
+                    <h3 class="location-title">Recepción y Fiesta</h3>
+                    <p class="location-name">Salón de Eventos "Mariposas Plateadas"</p>
+                    <p class="location-details">
+                        <i class="fas fa-clock"></i> 7:00 PM en adelante<br>
+                        <i class="fas fa-calendar"></i> 16 de Mayo, 2026
+                    </p>
+                    <p class="location-address">
+                        Avenida de las Flores #456, Jardines Residenciales
+                    </p>
+                    <a href="https://maps.google.com/?q=Salon+Mariposas+Plateadas" target="_blank" class="location-btn">
+                        <i class="fas fa-map-marker-alt"></i> Ver en Google Maps
                     </a>
                 </div>
-            </div>
-            
-            <div class="transport-note">
-                <p><i class="fas fa-car"></i> <strong>Estacionamiento disponible</strong> en ambos lugares</p>
-                <p><i class="fas fa-taxi"></i> <strong>Servicio de taxis</strong> recomendado para regreso</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección de vestimenta -->
-    <section id="vestimenta" class="section">
-        <div class="container">
-            <h2>Vestimenta</h2>
-            <p class="section-subtitle">Te sugerimos vestir de acuerdo a la ocasión</p>
-            
-            <div class="dress-code">
-                <div class="dress-option">
-                    <div class="dress-icon">
-                        <i class="fas fa-female"></i>
-                    </div>
-                    <h3>Para Mujeres</h3>
-                    <p>Vestido formal o de gala</p>
-                    <p>Colores: Pasteles o tonos elegantes</p>
-                    <div class="color-samples">
-                        <div class="color-sample" style="background-color: #f8e8ee;" title="Rosa pálido"></div>
-                        <div class="color-sample" style="background-color: #d4a5c3;" title="Rosa lila"></div>
-                        <div class="color-sample" style="background-color: #a2678a;" title="Morado claro"></div>
-                        <div class="color-sample" style="background-color: #f5e6ef;" title="Blanco roto"></div>
-                    </div>
-                </div>
                 
-                <div class="dress-option">
-                    <div class="dress-icon">
-                        <i class="fas fa-male"></i>
+                <div class="location-card dress-card">
+                    <div class="location-icon">
+                        <i class="fas fa-tshirt"></i>
                     </div>
-                    <h3>Para Hombres</h3>
-                    <p>Traje formal o de vestir</p>
-                    <p>Preferentemente de tonos oscuros</p>
-                    <div class="color-samples">
-                        <div class="color-sample" style="background-color: #4a3b4f;" title="Morado oscuro"></div>
-                        <div class="color-sample" style="background-color: #2c1e30;" title="Vino"></div>
-                        <div class="color-sample" style="background-color: #3a2c40;" title="Púrpura"></div>
-                        <div class="color-sample" style="background-color: #1a1a2e;" title="Azul marino"></div>
+                    <h3 class="location-title">Dress Code</h3>
+                    <p class="location-name">Elegante Formal</p>
+                    <div class="dress-details">
+                        <div class="dress-item">
+                            <i class="fas fa-female"></i>
+                            <span>Vestido largo o cocktail</span>
+                        </div>
+                        <div class="dress-item">
+                            <i class="fas fa-male"></i>
+                            <span>Traje formal</span>
+                        </div>
                     </div>
+                    <div class="color-prohibido">
+                        <strong>Color prohibido:</strong>
+                        <span class="prohibited-color">ROSA</span>
+                    </div>
+                    <p class="dress-note">* Este color es exclusivo para la quinceañera</p>
                 </div>
-            </div>
-            
-            <div class="dress-note">
-                <p><i class="fas fa-info-circle"></i> <strong>Código de vestimenta formal.</strong> Agradecemos respetar la elegancia del evento. Evitar jeans, playeras o ropa informal.</p>
             </div>
         </div>
     </section>
 
-    <!-- Sección de padrinos y comité -->
-    <section id="padrinos" class="section section-light">
+    <!-- Sección Padrinos -->
+    <section id="padrinos" class="godparents-section">
         <div class="container">
-            <h2>Padrinos y Comité</h2>
-            <p class="section-subtitle">Agradezco a quienes hacen posible este sueño</p>
-            
-            <div class="padrinos-grid">
-                <div class="padrino-card">
-                    <div class="padrino-icon">
-                        <i class="fas fa-ring"></i>
-                    </div>
-                    <h3>Padrinos de Anillos</h3>
-                    <p class="padrino-names">Tíos: María y Roberto García</p>
-                </div>
-                
-                <div class="padrino-card">
-                    <div class="padrino-icon">
-                        <i class="fas fa-bible"></i>
-                    </div>
-                    <h3>Padrinos de Biblia</h3>
-                    <p class="padrino-names">Abuelos: Carmen y Jorge Hernández</p>
-                </div>
-                
-                <div class="padrino-card">
-                    <div class="padrino-icon">
-                        <i class="fas fa-utensils"></i>
-                    </div>
-                    <h3>Padrinos de Mesa</h3>
-                    <p class="padrino-names">Familia Pérez y Familia Rodríguez</p>
-                </div>
-                
-                <div class="padrino-card">
-                    <div class="padrino-icon">
+            <h2 class="section-title">Nuestros Padrinos</h2>
+            <div class="godparents-grid">
+                <div class="godparent-card">
+                    <div class="godparent-icon">
                         <i class="fas fa-crown"></i>
                     </div>
-                    <h3>Comité de Damas</h3>
-                    <p class="padrino-names">Mis mejores amigas: Sofía, Camila, Andrea y Daniela</p>
+                    <h3 class="godparent-title">Padrinos de Honor</h3>
+                    <p class="godparent-name">María Elena y Carlos Rodríguez</p>
+                    <p class="godparent-role">Tía y tío maternos</p>
                 </div>
                 
-                <div class="padrino-card">
-                    <div class="padrino-icon">
-                        <i class="fas fa-music"></i>
+                <div class="godparent-card">
+                    <div class="godparent-icon">
+                        <i class="fas fa-bible"></i>
                     </div>
-                    <h3>Padrinos de Música</h3>
-                    <p class="padrino-names">Primos: Alejandro y Javier Martínez</p>
+                    <h3 class="godparent-title">Padrinos de Biblia</h3>
+                    <p class="godparent-name">Ana Lucía y Fernando Martínez</p>
+                    <p class="godparent-role">Amigos de la familia</p>
                 </div>
                 
-                <div class="padrino-card">
-                    <div class="padrino-icon">
-                        <i class="fas fa-camera"></i>
+                <div class="godparent-card">
+                    <div class="godparent-icon">
+                        <i class="fas fa-ring"></i>
                     </div>
-                    <h3>Padrinos de Recuerdos</h3>
-                    <p class="padrino-names">Tíos: Patricia y Luis Ramírez</p>
+                    <h3 class="godparent-title">Padrinos de Anillo</h3>
+                    <p class="godparent-name">Patricia y Ricardo López</p>
+                    <p class="godparent-role">Vecinos y consejeros</p>
+                </div>
+                
+                <div class="godparent-card">
+                    <div class="godparent-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3 class="godparent-title">Padrinos de Banquete</h3>
+                    <p class="godparent-name">Laura y Jorge Sánchez</p>
+                    <p class="godparent-role">Compadres</p>
                 </div>
             </div>
             
-            <div class="agradecimiento">
-                <p><i class="fas fa-heart"></i> Un agradecimiento especial a mis padres, <strong>Lucía y Carlos</strong>, por hacer posible este sueño y por su amor incondicional.</p>
+            <div class="gifts-section">
+                <h3 class="gifts-title">Lluvia de Sobres</h3>
+                <p class="gifts-text">
+                    Mi mejor regalo será compartir este día contigo. Si deseas obsequiarme algo, estaré recibiendo con cariño tu sobre como parte de esta lluvia de bendiciones.
+                </p>
+                <!-- <div class="alias-box">
+                    <p class="alias-label">Alias para transferencia:</p>
+                    <div class="alias-code">raquel.xv.2026</div>
+                    <p class="alias-note">(Mercado Pago / Transferencia bancaria)</p>
+                </div> -->
             </div>
         </div>
     </section>
 
-    <!-- Sección de galería -->
-    <section id="galeria" class="section">
+    <!-- Sección Galería -->
+    <section id="galeria" class="gallery-section">
         <div class="container">
-            <h2>Momentos Especiales</h2>
-            <p class="section-subtitle">Recuerdos que quiero compartir contigo</p>
-            
-            <div class="gallery-controls">
-                <button class="gallery-filter active" data-filter="all">Todas</button>
-                <button class="gallery-filter" data-filter="familiar">Familiar</button>
-                <button class="gallery-filter" data-filter="amigos">Amigos</button>
-                <button class="gallery-filter" data-filter="guatemala">Guatemala</button>
-            </div>
+            <h2 class="section-title">Mi Galería</h2>
+            <p class="section-subtitle">Momentos especiales en mi camino hacia los XV</p>
             
             <div class="gallery-grid">
-                <!-- Foto 1 -->
-                <div class="gallery-item" data-category="familiar">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=776&q=80');">
-                        <div class="gallery-overlay">
-                            <div class="gallery-icons">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 1" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Mi primer año</span>
                     </div>
-                    <div class="gallery-caption">Mi último cumpleaños</div>
                 </div>
-                
-                <!-- Foto 2 -->
-                <div class="gallery-item" data-category="familiar">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1160&q=80');">
-                        <div class="gallery-overlay">
-                            <div class="gallery-icons">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 2" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>En el colegio</span>
                     </div>
-                    <div class="gallery-caption">Con mi familia en Antigua</div>
                 </div>
-                
-                <!-- Foto 3 -->
-                <div class="gallery-item" data-category="guatemala">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1528181304800-259b08848526?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');">
-                        <div class="gallery-overlay">
-                            <div class="gallery-icons">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 3" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Con mi familia</span>
                     </div>
-                    <div class="gallery-caption">Visitando el Lago de Atitlán</div>
                 </div>
-                
-                <!-- Foto 4 -->
-                <div class="gallery-item" data-category="amigos">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1511988617509-a57c8a288659?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1051&q=80');">
-                        <div class="gallery-overlay">
-                            <div class="gallery-icons">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
+
+ <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 3" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Con mi familia</span>
                     </div>
-                    <div class="gallery-caption">Con mis mejores amigas</div>
                 </div>
-                
-                <!-- Foto 5 -->
-                <div class="gallery-item" data-category="familiar">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');">
-                        <div class="gallery-overlay">
-                            <div class="gallery-icons">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
+
+                 <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 3" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Con mi familia</span>
                     </div>
-                    <div class="gallery-caption">Mis 14 años</div>
                 </div>
-                
-                <!-- Foto 6 -->
-                <div class="gallery-item" data-category="amigos">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80');">
-                        <div class="gallery-overlay">
-                            <div class="gallery-icons">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
+
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1542599741749-850e258ee5c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 4" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Mi pasión por la música</span>
                     </div>
-                    <div class="gallery-caption">Sesión de fotos XV</div>
                 </div>
-                
-                <!-- Foto 7 -->
-                <div class="gallery-item" data-category="guatemala">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1518639192441-8fce0a366e2e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80');">
-                        <div class="gallery-overlay">
-                            <div class="gallery-icons">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 5" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Estudiando</span>
                     </div>
-                    <div class="gallery-caption">En Tikal, Petén</div>
                 </div>
-                
-                <!-- Foto 8 -->
-                <div class="gallery-item" data-category="amigos">
-                    <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');">
-                        <div class="gallery-overlay">
-                            <div class="gallery-icons">
-                                <i class="fas fa-expand"></i>
-                            </div>
-                        </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 6" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Sonriendo siempre</span>
                     </div>
-                    <div class="gallery-caption">Graduación de secundaria</div>
                 </div>
-            </div>
-            
-            <!-- Modal para ver imagen ampliada -->
-            <div id="galleryModal" class="gallery-modal">
-                <div class="modal-content">
-                    <span class="modal-close">&times;</span>
-                    <img id="modalImage" src="" alt="Imagen ampliada">
-                    <div id="modalCaption"></div>
-                    <div class="modal-nav">
-                        <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-                        <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 7" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Con mis amigas</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 8" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>De viaje</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 9" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Mis hobbies</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1542599741749-850e258ee5c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Foto 10" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <span>Lista para mis XV</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de confirmación de asistencia -->
-    <section id="confirmacion" class="section section-light">
+    <!-- Sección Confirmar Asistencia -->
+    <section id="confirmar" class="confirmation-section">
         <div class="container">
-            <h2>Confirmación de Asistencia</h2>
-            <p class="section-subtitle">Por favor, confirma tu asistencia antes del 1 de Diciembre de 2024</p>
+            <h2 class="section-title">Confirmar Asistencia</h2>
+            <p class="section-subtitle">Por favor, completa este formulario para confirmar tu presencia en mi celebración</p>
             
-            <div class="confirmation-form">
-                <form id="attendanceForm">
-                    <div class="form-row">
+            <div class="confirmation-wrapper">
+                <div class="confirmation-form-container">
+                    <form id="confirmationForm" class="confirmation-form">
                         <div class="form-group">
-                            <label for="name">Nombre completo *</label>
-                            <input type="text" id="name" name="name" required placeholder="Tu nombre completo">
+                            <label for="nombre">Nombre y Apellido *</label>
+                            <input type="text" id="nombre" class="form-control" required placeholder="Tu nombre completo">
                         </div>
                         
                         <div class="form-group">
-                            <label for="phone">Teléfono celular *</label>
-                            <input type="tel" id="phone" name="phone" required placeholder="502 1234 5678">
-                            <small class="form-hint">Recibirás tu pase digital en este número</small>
+                            <label for="telefono">Número de Teléfono *</label>
+                            <input type="tel" id="telefono" class="form-control" required placeholder="Ej: +502 12347689">
                         </div>
-                    </div>
-                    
-                    <div class="form-row">
+                        
                         <div class="form-group">
-                            <label for="guests">Número de acompañantes *</label>
-                            <select id="guests" name="guests" required>
-                                <option value="" disabled selected>Selecciona una opción</option>
-                                <option value="0">0 - Solo yo</option>
-                                <option value="1">1 acompañante</option>
-                                <option value="2">2 acompañantes</option>
-                                <option value="3">3 acompañantes</option>
-                                <option value="4">4 acompañantes</option>
-                                <option value="5">5 o más acompañantes</option>
+                            <label for="asistentes">¿Cuántas personas asistirán? *</label>
+                            <select id="asistentes" class="form-control" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="1">1 persona (solo yo)</option>
+                                <option value="2">2 personas</option>
+                                <option value="3">3 personas</option>
+                                <option value="4">4 personas</option>
+                                <option value="5+">5 personas o más</option>
                             </select>
                         </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Mensaje especial para la quinceañera (opcional)</label>
-                        <textarea id="message" name="message" placeholder="Escribe un mensaje para Raquelita..."></textarea>
-                    </div>
-                    
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="asistencia" name="asistencia" required>
-                        <label for="asistencia">Confirmo que asistiré a la celebración de XV años de Raquelita *</label>
-                    </div>
-                    
-                    <button type="button" id="confirmBtn" class="btn confirm-btn">
-                        <i class="fas fa-check-circle"></i> Confirmar asistencia
-                    </button>
-                </form>
+                        
+                        <div class="form-group">
+                            <label for="mensaje">Mensaje para Raquel (opcional)</label>
+                            <textarea id="mensaje" class="form-control" rows="3" placeholder="Escribe un mensaje especial para mí..."></textarea>
+                        </div>
+                        
+                        <div class="form-notice">
+                            <i class="fas fa-info-circle"></i>
+                            <p>Después de enviar tu confirmación por WhatsApp, <strong>regresa a esta página</strong> para generar tu pase de acceso.</p>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
+                        </button>
+                    </form>
+                </div>
                 
-                <div class="form-note">
-                    <p><i class="fas fa-info-circle"></i> Al confirmar, se abrirá WhatsApp para enviar tu confirmación y recibirás tu pase de acceso digital en tu celular.</p>
+                <div class="instructions-box">
+                    <h3 class="instructions-title">Instrucciones</h3>
+                    <div class="instructions-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h4>Completa el formulario</h4>
+                                <p>Llena todos los campos requeridos con tus datos</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h4>Envía por WhatsApp</h4>
+                                <p>Se abrirá WhatsApp con tu mensaje predefinido</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h4>Regresa a esta página</h4>
+                                <p>Vuelve aquí después de enviar el mensaje</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <div class="step-content">
+                                <h4>Descarga tu pase</h4>
+                                <p>Genera y descarga tu pase de acceso oficial</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Sección del pase de acceso -->
-    <section id="pase" class="section pase-section" style="display: none;">
-        <div class="container">
-            <h2>¡Gracias por confirmar!</h2>
-            <p class="section-subtitle">Tu pase de acceso ha sido generado</p>
             
-            <div class="ticket-container">
-                <div class="ticket" id="ticketToSave">
+            <!-- Ticket Section -->
+            <div id="ticketSection" class="ticket-section">
+                <div class="ticket-container">
                     <div class="ticket-header">
-                        <h3>Pase de Acceso Exclusivo</h3>
-                        <p>XV Años de Raquelita • 15 de Diciembre, 2024</p>
-                        <p class="ticket-country"><i class="fas fa-map-marker-alt"></i> Antigua Guatemala, Guatemala</p>
+                        <h3 class="ticket-title">Pase de Acceso Oficial</h3>
+                        <p class="ticket-subtitle">XV Años de Raquel Ester</p>
                     </div>
                     
                     <div class="ticket-body">
                         <div class="ticket-info">
-                            <div class="ticket-field">
-                                <span class="ticket-label">Invitado:</span>
-                                <span id="ticketName" class="ticket-value">Nombre del invitado</span>
+                            <div class="info-row">
+                                <span class="info-label">Invitado:</span>
+                                <span class="info-value" id="ticketNombre">Nombre del Invitado</span>
                             </div>
-                            
-                            <div class="ticket-field">
-                                <span class="ticket-label">Acompañantes:</span>
-                                <span id="ticketGuests" class="ticket-value">0</span>
+                            <div class="info-row">
+                                <span class="info-label">Evento:</span>
+                                <span class="info-value">Celebración de XV Años</span>
                             </div>
-                            
-                            <div class="ticket-field">
-                                <span class="ticket-label">Evento:</span>
-                                <span class="ticket-value">Celebración de XV Años</span>
+                            <div class="info-row">
+                                <span class="info-label">Fecha:</span>
+                                <span class="info-value">16 de Mayo, 2026</span>
                             </div>
-                            
-                            <div class="ticket-field">
-                                <span class="ticket-label">Fecha:</span>
-                                <span class="ticket-value">15 de Diciembre, 2024</span>
+                            <div class="info-row">
+                                <span class="info-label">Hora:</span>
+                                <span class="info-value">4:00 PM (Misa) / 7:00 PM (Fiesta)</span>
                             </div>
-                            
-                            <div class="ticket-field">
-                                <span class="ticket-label">Hora de recepción:</span>
-                                <span class="ticket-value">17:30 hrs</span>
+                            <div class="info-row">
+                                <span class="info-label">Asistentes:</span>
+                                <span class="info-value" id="ticketAsistentes">1</span> persona(s)
                             </div>
-                            
-                            <div class="ticket-field">
-                                <span class="ticket-label">Lugar:</span>
-                                <span class="ticket-value">Salón "Jardines de la Antigua"</span>
-                            </div>
-                            
-                            <div class="ticket-field">
-                                <span class="ticket-label">Código de acceso:</span>
-                                <span class="ticket-value">XV-2024-<span id="ticketCode">0000</span></span>
+                            <div class="info-row">
+                                <span class="info-label">Código:</span>
+                                <span class="info-code">XV-RAQUEL-<span id="ticketCodigo">001</span></span>
                             </div>
                         </div>
                         
-                        <div class="ticket-barcode">
-                            <div class="barcode" id="ticketBarcode"></div>
-                            <p class="barcode-number">XV-2024-<span id="ticketBarcodeNumber">0000</span></p>
+                        <div class="ticket-qr">
+                            <div class="qr-container">
+                                <div class="qr-placeholder">
+                                    <i class="fas fa-qrcode"></i>
+                                    <p>Código QR</p>
+                                </div>
+                            </div>
+                            <p class="qr-text">Presentar en entrada</p>
                         </div>
                     </div>
                     
                     <div class="ticket-footer">
-                        <p><i class="fas fa-info-circle"></i> Presenta este pase en la entrada del salón. Puedes mostrar la captura de pantalla o imprimirlo.</p>
-                        <div class="ticket-actions">
-                            <button id="saveTicketBtn" class="btn ticket-btn">
-                                <i class="fas fa-download"></i> Guardar pase
-                            </button>
-                            <button id="newConfirmationBtn" class="btn ticket-btn btn-secondary">
-                                <i class="fas fa-undo"></i> Nueva confirmación
-                            </button>
-                        </div>
+                        <p class="ticket-note">
+                            <i class="fas fa-camera"></i> Toma una captura o descarga este pase
+                        </p>
+                        <button id="downloadTicket" class="download-btn">
+                            <i class="fas fa-download"></i> Descargar Pase
+                        </button>
                     </div>
-                </div>
-                
-                <div class="ticket-instructions">
-                    <h4><i class="fas fa-lightbulb"></i> Instrucciones:</h4>
-                    <ol>
-                        <li>Guarda este pase en tu dispositivo usando el botón "Guardar pase"</li>
-                        <li>También recibirás una copia en tu WhatsApp</li>
-                        <li>Muéstralo en la entrada del salón el día del evento</li>
-                        <li>Llega puntual para disfrutar de todas las actividades</li>
-                        <li>Comparte tus fotos con el hashtag <strong>#XVRaquelita2024</strong></li>
-                        <li>Este pase es personal e intransferible</li>
-                    </ol>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-info">
-                    <h3 class="footer-logo">XV Raquelita 2024</h3>
-                    <p>Celebrando 15 años de sueños, alegrías y bendiciones</p>
-                    <p>15 de Diciembre, 2024 • Antigua Guatemala, Guatemala</p>
-                    <div class="footer-countdown">
-                        <p><i class="fas fa-hourglass-half"></i> Faltan <span id="footerDays">00</span> días para la celebración</p>
-                    </div>
+                <div class="footer-logo">
+                    <h3 class="footer-title">Raquel Ester</h3>
+                    <p class="footer-subtitle">Mis XV Años</p>
+                    <p class="footer-date">16 de Mayo, 2026</p>
                 </div>
                 
-                <div class="footer-links">
-                    <h4>Navegación</h4>
-                    <ul>
-                        <li><a href="#inicio"><i class="fas fa-home"></i> Inicio</a></li>
-                        <li><a href="#invitacion"><i class="fas fa-heart"></i> Invitación</a></li>
-                        <li><a href="#itinerario"><i class="fas fa-clock"></i> Itinerario</a></li>
-                        <li><a href="#ubicaciones"><i class="fas fa-map-marker-alt"></i> Ubicaciones</a></li>
-                        <li><a href="#vestimenta"><i class="fas fa-tshirt"></i> Vestimenta</a></li>
-                        <li><a href="#confirmacion"><i class="fas fa-check-circle"></i> Confirmar</a></li>
-                    </ul>
+                <div class="footer-info">
+                    <h4 class="info-title">Información</h4>
+                    <p><i class="fas fa-users"></i> Padres: Raquel y Jonathan</p>
+                    <p><i class="fas fa-church"></i> Misa: 4:00 PM</p>
+                    <p><i class="fas fa-glass-cheers"></i> Fiesta: 7:00 PM</p>
                 </div>
                 
                 <div class="footer-contact">
-                    <h4>Contacto</h4>
-                    <p><i class="fas fa-phone"></i> +502 1234 5678 (Familia Hernández)</p>
-                    <p><i class="fas fa-map-pin"></i> Antigua Guatemala, Guatemala</p>
+                    <h4 class="info-title">Contacto</h4>
+                    <p><i class="fas fa-phone"></i> +54 9 11 2345-6789</p>
+                    <p><i class="fas fa-envelope"></i> xvraquel2026@gmail.com</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i> @XVRaquelita2024</a>
-                        <a href="#"><i class="fab fa-facebook"></i> XV Años Raquelita</a>
-                        <a href="#"><i class="fab fa-tiktok"></i> @XVRaquelita</a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>Con todo mi amor para mi familia y amigos ❤️ Este día será inolvidable gracias a ustedes.</p>
-                <p class="copyright">© 2024 XV Años de Raquelita. Diseñado con amor para una celebración especial en Guatemala.</p>
+                <p>Con la bendición de Dios y el amor de mi familia • © 2026 XV Raquel Ester • Diseñado con <i class="fas fa-heart"></i> para ti</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
