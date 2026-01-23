@@ -217,23 +217,116 @@ function showMusicNotification(message) {
         ticketSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     
-    // Función para descargar el ticket
-    const downloadBtn = document.getElementById('downloadTicket');
+
+// Función para descargar el ticket como IMAGEN
+const downloadBtn = document.getElementById('downloadTicket');
+
+downloadBtn.addEventListener('click', async function() {
+    // Mostrar mensaje de carga
+    downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generando...';
+    downloadBtn.disabled = true;
     
-    downloadBtn.addEventListener('click', function() {
-        // Crear un mensaje de confirmación
+    try {
+        // Obtener el elemento del ticket
+        const ticketElement = document.querySelector('.ticket-container');
+        
+        // Configuración para html2canvas
+        const options = {
+            scale: 3, // Mayor calidad
+            useCORS: true, // Permitir imágenes externas
+            backgroundColor: null, // Fondo transparente
+            logging: false, // No mostrar logs
+            onclone: function(clonedDoc) {
+                // Asegurar que los estilos se mantengan
+                const clonedTicket = clonedDoc.querySelector('.ticket-container');
+                clonedTicket.style.boxShadow = 'none';
+                clonedTicket.style.margin = '0';
+                clonedTicket.style.transform = 'scale(1)';
+            }
+        };
+        
+        // Crear el canvas con html2canvas
+        const canvas = await html2canvas(ticketElement, options);
+        
+        // Convertir canvas a imagen
+        const imageData = canvas.toDataURL('image/png', 1.0);
+        
+        // Crear enlace de descarga
+        const downloadLink = document.createElement('a');
         const ticketCode = document.getElementById('ticketCodigo').textContent;
         const nombreInvitado = document.getElementById('ticketNombre').textContent;
         
-        alert(`✅ Pase de acceso descargado exitosamente.\n\n📄 Nombre: ${nombreInvitado}\n🔑 Código: XV-RAQUEL-${ticketCode}\n\n💡 Guarda este pase en tu dispositivo o imprímelo para presentarlo en la entrada del evento.`);
+        // Nombre del archivo
+        const fileName = `Pase-XV-Raquel-${ticketCode}-${nombreInvitado.replace(/\s+/g, '_')}.png`;
         
-        // En un entorno real, aquí se implementaría la descarga real de la imagen
-        // Para este ejemplo, simulamos la descarga
-        const downloadLink = document.createElement('a');
-        downloadLink.href = '#';
-        downloadLink.download = `Pase-XV-Raquel-${ticketCode}.png`;
+        downloadLink.href = imageData;
+        downloadLink.download = fileName;
+        
+        // Simular clic en el enlace para descargar
+        document.body.appendChild(downloadLink);
         downloadLink.click();
-    });
+        document.body.removeChild(downloadLink);
+        
+        // Mostrar notificación de éxito
+        showDownloadNotification(nombreInvitado, ticketCode);
+        
+    } catch (error) {
+        console.error('Error al generar la imagen:', error);
+        alert('❌ Error al generar el pase. Por favor, intenta nuevamente.');
+    } finally {
+        // Restaurar el botón
+        downloadBtn.innerHTML = '<i class="fas fa-download"></i> Descargar Pase';
+        downloadBtn.disabled = false;
+    }
+});
+
+// Función para mostrar notificación de descarga exitosa
+function showDownloadNotification(nombre, codigo) {
+    // Crear elemento de notificación
+    const notification = document.createElement('div');
+    notification.className = 'download-notification';
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <div>
+                <h4>✅ Pase descargado exitosamente</h4>
+                <p><strong>Invitado:</strong> ${nombre}</p>
+                <p><strong>Código:</strong> XV-RAQUEL-${codigo}</p>
+                <p class="notification-tip">💡 Guarda esta imagen o imprímela para presentarla en la entrada.</p>
+            </div>
+        </div>
+    `;
+    
+    // Aplicar estilos
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--azul-marino), var(--azul-medio));
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        z-index: 10000;
+        max-width: 350px;
+        border-left: 5px solid var(--dorado);
+        animation: slideInRight 0.5s ease, fadeOut 0.5s ease 5s forwards;
+    `;
+    
+    // Agregar al DOM
+    document.body.appendChild(notification);
+    
+    // Remover después de 5 segundos
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+        }
+    }, 5000);
+}
+
+
+
+
     
     // Efecto de scroll para navbar
     window.addEventListener('scroll', function() {
