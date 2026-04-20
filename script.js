@@ -78,7 +78,7 @@ const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 
 // Estado inicial
-audioPlayer.volume = 0.7;
+audioPlayer.volume = 0.30;
 
 // Formatear tiempo (segundos a MM:SS)
 function formatTime(seconds) {
@@ -182,7 +182,7 @@ function showMusicNotification(message) {
                                `*Número de teléfono:* ${telefono}%0A` +
                                `*Número de asistentes:* ${asistentes}%0A` +
                                (mensaje ? `*Mensaje para Raquel:* ${mensaje}%0A` : "") +
-                               `%0A¡Nos vemos el 16 de mayo de 2026! 🦋`;
+                               `%0A¡Nos vemos el 30 de mayo de 2026! 🦋`;
         
         // Número de WhatsApp (reemplazar con el número real)
         const whatsappNumber = "32840999";
@@ -371,5 +371,10 @@ function showDownloadNotification(nombre, codigo) {
             section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
             observer.observe(section);
         });
+         //Para no descargar imagen 
+         document.addEventListener("contextmenu", function(e){
+         e.preventDefault();
+        });
+
     });
 });
