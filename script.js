@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Contador regresivo
     function updateCountdown() {
-        const targetDate = new Date('May 16, 2026 16:00:00').getTime();
+        const targetDate = new Date('May 30, 2026 16:00:00').getTime();
         const now = new Date().getTime();
         const timeLeft = targetDate - now;
         
@@ -185,7 +185,7 @@ function showMusicNotification(message) {
                                `%0A¡Nos vemos el 16 de mayo de 2026! 🦋`;
         
         // Número de WhatsApp (reemplazar con el número real)
-        const whatsappNumber = "55996252";
+        const whatsappNumber = "32840999";
         
         // Abrir WhatsApp en una nueva ventana
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
